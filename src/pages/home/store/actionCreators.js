@@ -25,3 +25,8 @@ export const addTab = (title, key, routeUrl) => ({
         routeUrl
     }
 })
+
+export const selectTab = (tabKey) => ({
+    type: actionTypes.SELECT_TAB,
+    tabKey
+})

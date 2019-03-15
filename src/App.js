@@ -12,7 +12,7 @@ import Home from './pages/home'
 
 
 class App extends Component {
-  render() { 
+  render() {
     return (
       <Provider store={store}>
         <Globalstyle />

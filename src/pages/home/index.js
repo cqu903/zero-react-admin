@@ -42,7 +42,7 @@ class Home extends Component {
                             </Menu>
                         </Sider>
                         <Content style={{ background: '#fff', padding: '0 12 0 12', margin: 0, minHeight: 280, }}>
-                            <Tabs activeKey={this.props.activeTab}>
+                            <Tabs activeKey={this.props.activeTab} onTabClick={this.props.handleTabClick}>
                                 {
                                     this.props.tabs.map((tabItem) => {
                                         return (
@@ -74,6 +74,9 @@ const mapProps = (dispatch) => {
         },
         handleMenuClick(menuItem) {
             dispatch(homeActionCreators.addTab(menuItem.get('text'), menuItem.get('id'), '/mainPage'))
+        },
+        handleTabClick(tabKey) {
+            dispatch(homeActionCreators.selectTab(tabKey))
         }
     }
 }

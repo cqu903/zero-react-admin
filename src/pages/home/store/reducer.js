@@ -26,6 +26,8 @@ export default (state = defaultState, action) => {
             } else {
                 return state.set('tabs', state.get('tabs').concat(fromJS([action.data]))).set('activeTab', action.data.key)
             }
+        case actionTypes.SELECT_TAB:
+            return state.set('activeTab', action.tabKey)
         default:
             return state
     }
