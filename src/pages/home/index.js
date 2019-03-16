@@ -14,7 +14,7 @@ class Home extends Component {
         this.props.loadMenuData()
     }
     render() {
-        const { Footer, Sider, Content, } = Layout
+        const { Sider, Content, } = Layout
         const { SubMenu } = Menu
         const { menuData } = this.props
         return (
@@ -29,7 +29,7 @@ class Home extends Component {
                                 mode="inline"
                                 defaultSelectedKeys={['1']}
                                 defaultOpenKeys={['sub1']}
-                                style={{ height: '100%', borderRight: 0, overflow: 'scroll', background: 'rgb(250, 250, 250)' }}>
+                                style={{ height: '100%', background: 'rgb(250, 250, 250)' }}>
                                 {
                                     menuData.map((item) => {
                                         return (
@@ -66,9 +66,7 @@ class Home extends Component {
                             }
                         </Content>
                     </Layout>
-                    <Footer style={{ textAlign: 'center', height: 50, padding: 10 }}>
-                        Ant Design ©2018 Created by Zero Finance
-                    </Footer>
+
                 </Layout >
             </HomeWrapper >
         )

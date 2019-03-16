@@ -38,7 +38,8 @@ class LoanList extends Component {
             disable: false
         }, {
             title: 'button2',
-            handleClick: (row, rows) => {
+            handleClick: (e, row, rows) => {
+                console.info(e)
                 console.info(row)
                 console.info(rows)
             },

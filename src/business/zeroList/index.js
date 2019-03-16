@@ -10,7 +10,6 @@ class ZeroList extends Component {
             < div >
                 {
                     this.props.buttons.map((item) => {
-                        console.info(item.handleClick)
                         return (
                             <Button
                                 key={item.title}
@@ -28,4 +27,7 @@ class ZeroList extends Component {
         )
     }
 }
-export default connect(null, null)(ZeroList)
+const mapState = (state) => ({
+    selectedRow: state.getIn(["zeroList", "selectedRow"])
+})
+export default connect(mapState, null)(ZeroList)
