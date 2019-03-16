@@ -9,7 +9,7 @@ const initMenuData = (data) => ({
 
 export const loadMenuData = () => {
     return (dispatch) => {
-        axios.get('http://yapi.aeasycredit.net/mock/33/api/getMenu').then((res) => {
+        axios.get('/api/menu.json').then((res) => {
             dispatch(initMenuData(res.data))
         }).catch((err) => {
             console.info(err)

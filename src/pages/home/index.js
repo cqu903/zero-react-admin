@@ -3,22 +3,25 @@ import { connect } from 'react-redux'
 import { Layout, Menu, Icon, Tabs } from 'antd';
 import { HomeWrapper } from './style'
 import { actionCreators as homeActionCreators } from './store'
+import { Route, Link } from 'react-router-dom'
+import routes from '../routes'
+import Header from '../../common/header'
 
 class Home extends Component {
     componentDidMount() {
         this.props.loadMenuData()
     }
     render() {
-        const { Header, Footer, Sider, Content, } = Layout
+        const { Footer, Sider, Content, } = Layout
         const { SubMenu } = Menu
         const { menuData } = this.props
         const TabPane = Tabs.TabPane;
         return (
             <HomeWrapper>
                 <Layout style={{ height: '100%' }}>
-                    <Header className='header' style={{ background: '#fff', border: '1px solid' }} >
-                        <div className='logo'></div>
-                    </Header>
+                    <Layout.Header style={{ background: '#fff', borderBottom: '1px solid #f0f0f0' }}>
+                        <Header></Header>
+                    </Layout.Header>
                     <Layout>
                         <Sider width={200}>
                             <Menu
@@ -32,7 +35,14 @@ class Home extends Component {
                                             <SubMenu key={item.get('id')} title={<span><Icon type="menu" />{item.get('text')}</span>}>
                                                 {item.get('children').map((menuItem) => {
                                                     return (
-                                                        <Menu.Item onClick={() => this.props.handleMenuClick(menuItem)} key={menuItem.get('id')}><Icon type="arrow-right" />{menuItem.get('text')}</Menu.Item>
+                                                        // <Link to={menuItem.get('url')} key={menuItem.get('id')}>
+                                                        <Menu.Item onClick={() => this.props.handleMenuClick(menuItem)} key={menuItem.get('id')}>
+                                                            <Link to={menuItem.get('url')} key={menuItem.get('id')}>
+                                                                <Icon type="arrow-right" />
+                                                                {menuItem.get('text')}
+                                                            </Link>
+                                                        </Menu.Item>
+                                                        // </Link>
                                                     )
                                                 })}
                                             </SubMenu>
@@ -46,7 +56,13 @@ class Home extends Component {
                                 {
                                     this.props.tabs.map((tabItem) => {
                                         return (
-                                            <TabPane tab={tabItem.get('title')} key={tabItem.get('key')}>{tabItem.get('routeUrl')}</TabPane>
+                                            <TabPane tab={tabItem.get('title')} key={tabItem.get('key')}>
+                                                {
+                                                    routes.map((route) => {
+                                                        return <Route key={route.path} path={route.path} component={route.component} exact></Route>
+                                                    })
+                                                }
+                                            </TabPane>
                                         )
                                     })
                                 }

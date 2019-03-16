@@ -20,7 +20,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Route path='/login' component={Login} exact />
-            <Route path='/' component={Home} exact />
+            <Route path='/' component={Home} />
           </div>
         </BrowserRouter>
       </Provider>
