@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Layout, Menu, Icon, Tabs } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import { HomeWrapper } from './style'
 import { actionCreators as homeActionCreators } from './store'
 import { Route, Link } from 'react-router-dom'
+
 import routes from '../routes'
 import Header from '../../common/header'
+
 
 class Home extends Component {
     componentDidMount() {
@@ -15,7 +17,6 @@ class Home extends Component {
         const { Footer, Sider, Content, } = Layout
         const { SubMenu } = Menu
         const { menuData } = this.props
-        const TabPane = Tabs.TabPane;
         return (
             <HomeWrapper>
                 <Layout style={{ height: '100%' }}>
@@ -28,21 +29,19 @@ class Home extends Component {
                                 mode="inline"
                                 defaultSelectedKeys={['1']}
                                 defaultOpenKeys={['sub1']}
-                                style={{ height: '100%', borderRight: 0, overflow: 'scroll', background: '#eee' }}>
+                                style={{ height: '100%', borderRight: 0, overflow: 'scroll', background: 'rgb(250, 250, 250)' }}>
                                 {
                                     menuData.map((item) => {
                                         return (
-                                            <SubMenu key={item.get('id')} title={<span><Icon type="menu" />{item.get('text')}</span>}>
+                                            <SubMenu key={item.get('id')} title={<span><Icon type="menu" />{item.get('text')}</span>} style={{ color: 'rgb(32, 32, 32)' }}>
                                                 {item.get('children').map((menuItem) => {
                                                     return (
-                                                        // <Link to={menuItem.get('url')} key={menuItem.get('id')}>
-                                                        <Menu.Item onClick={() => this.props.handleMenuClick(menuItem)} key={menuItem.get('id')}>
+                                                        <Menu.Item key={menuItem.get('id')}>
                                                             <Link to={menuItem.get('url')} key={menuItem.get('id')}>
                                                                 <Icon type="arrow-right" />
                                                                 {menuItem.get('text')}
                                                             </Link>
                                                         </Menu.Item>
-                                                        // </Link>
                                                     )
                                                 })}
                                             </SubMenu>
@@ -51,23 +50,20 @@ class Home extends Component {
                                 }
                             </Menu>
                         </Sider>
-                        <Content style={{ background: '#fff', padding: '0 12 0 12', margin: 0, minHeight: 280, }}>
-                            <Tabs activeKey={this.props.activeTab} onTabClick={this.props.handleTabClick}>
-                                {
-                                    this.props.tabs.map((tabItem) => {
-                                        return (
-                                            <TabPane tab={tabItem.get('title')} key={tabItem.get('key')}>
-                                                {
-                                                    routes.map((route) => {
-                                                        return <Route key={route.path} path={route.path} component={route.component} exact></Route>
-                                                    })
-                                                }
-                                            </TabPane>
-                                        )
-                                    })
-                                }
-
-                            </Tabs>
+                        <Content style={{
+                            background: '#fff',
+                            padding: '7px',
+                            border: '1px solid #eee',
+                            margin: '0 0 0 2px',
+                            minHeight: 280
+                        }}>
+                            {
+                                routes.map((route) => {
+                                    return (
+                                        <Route key={route.path} path={route.path} component={route.component} exact ></Route>
+                                    )
+                                })
+                            }
                         </Content>
                     </Layout>
                     <Footer style={{ textAlign: 'center', height: 50, padding: 10 }}>
@@ -80,19 +76,11 @@ class Home extends Component {
 }
 const mapState = (state) => ({
     menuData: state.getIn(['home', 'menuData']),
-    tabs: state.getIn(['home', 'tabs']),
-    activeTab: state.get('home').get('activeTab')
 })
 const mapProps = (dispatch) => {
     return {
         loadMenuData() {
             dispatch(homeActionCreators.loadMenuData())
-        },
-        handleMenuClick(menuItem) {
-            dispatch(homeActionCreators.addTab(menuItem.get('text'), menuItem.get('id'), '/mainPage'))
-        },
-        handleTabClick(tabKey) {
-            dispatch(homeActionCreators.selectTab(tabKey))
         }
     }
 }

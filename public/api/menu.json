@@ -1,22 +1,17 @@
 [
     {
         "id": "1",
-        "text": "系统管理",
+        "text": "贷款审批",
         "children": [
             {
                 "id": "11",
-                "text": "组织管理",
+                "text": "申请列表",
                 "url": "/loanList"
             },
             {
                 "id": "12",
-                "text": "职位管理",
-                "url": "/loanList"
-            },
-            {
-                "id": "13",
-                "text": "夜间事务管理",
-                "url": "/loanList"
+                "text": "贷款详情",
+                "url": "/loanDetail"
             }
         ]
     },

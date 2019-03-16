@@ -2,11 +2,6 @@ import { fromJS } from 'immutable'
 import * as actionTypes from './actionTypes'
 const defaultState = fromJS({
     menuData: [],
-    tabs: [{
-        title: '欢迎页',
-        routeUrl: '../pages/welcome',
-        key: '欢迎页'
-    }],
     activeTab: '欢迎页'
 })
 
@@ -20,6 +15,7 @@ export default (state = defaultState, action) => {
                 if (item.get('key') === action.data.key) {
                     hasSameKey = true
                 }
+                return true
             })
             if (hasSameKey) {
                 return state.set('activeTab', action.data.key)

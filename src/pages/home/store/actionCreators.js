@@ -16,17 +16,3 @@ export const loadMenuData = () => {
         })
     }
 }
-
-export const addTab = (title, key, routeUrl) => ({
-    type: actionTypes.ADD_TAB,
-    data: {
-        title,
-        key,
-        routeUrl
-    }
-})
-
-export const selectTab = (tabKey) => ({
-    type: actionTypes.SELECT_TAB,
-    tabKey
-})
