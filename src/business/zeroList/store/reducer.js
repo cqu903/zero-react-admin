@@ -2,12 +2,16 @@ import * as actionTypes from './actionTypes'
 
 const defaultState = {
     multiSelect: false,
-    selectedRows: []
+    selectedRows: [],
+    dataList: []
 }
 
 export default (state = defaultState, action) => {
     let newState = JSON.parse(JSON.stringify(state))
     switch (action.type) {
+        case actionTypes.INIT_LIST:
+            newState.dataList = action.list
+            return newState
         case actionTypes.INIT_MULTI_SELECT:
             newState.multiSelect = action.multiSelect
             return newState

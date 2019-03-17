@@ -6,9 +6,10 @@ import { actionCreators } from './store'
 import './style.css'
 
 class ZeroList extends Component {
-    constructor(props) {
-        super(props)
-        this.props.initProps(props)
+
+    componentDidMount() {
+        this.props.initProps(this.props)
+        // this.props.fetchData(this.props.dataUrl)
     }
 
     static defaultProps = {
@@ -32,7 +33,7 @@ class ZeroList extends Component {
                 }
                 < Table
                     rowKey='id'
-                    dataSource={this.props.dataSource}
+                    dataSource={this.props.dataList}
                     columns={this.props.columns}
                     pagination={this.props.pagination}
                     onRow={(record) => {
@@ -62,7 +63,8 @@ class ZeroList extends Component {
     }
 }
 const mapState = (state) => ({
-    selectedRows: state.zeroList.selectedRows
+    selectedRows: state.zeroList.selectedRows,
+    dataList: state.zeroList.dataList
 })
 const mapDispatch = (dispatch) => {
     return {
@@ -72,6 +74,9 @@ const mapDispatch = (dispatch) => {
         initProps(props) {
             if (props.multiSelect) {
                 dispatch(actionCreators.initMultiSelect(props.multiSelect))
+            }
+            if (props.dataUrl) {
+                dispatch(actionCreators.initDataList(props.dataUrl))
             }
         }
     }

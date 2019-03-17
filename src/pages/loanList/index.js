@@ -41,9 +41,10 @@ class LoanList extends Component {
             },
             disabled: false
         }]
+        const dataUrl = '/api/loanList.json'
         return (
             // <ZeroList pagination multiSelect buttons={buttons} columns={columns} dataSource={this.props.loanList} />
-            <ZeroList multiSelect buttons={buttons} columns={columns} dataSource={this.props.loanList} />
+            <ZeroList multiSelect buttons={buttons} columns={columns} dataUrl={dataUrl} />
         )
     }
 }
