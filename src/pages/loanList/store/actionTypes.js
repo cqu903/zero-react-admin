@@ -1,0 +1,1 @@
+export const INIT_LOAN_LIST = 'loanList/init_loan_list'

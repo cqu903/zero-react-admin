@@ -33,13 +33,13 @@ class Home extends Component {
                                 {
                                     menuData.map((item) => {
                                         return (
-                                            <SubMenu key={item.get('id')} title={<span><Icon type="menu" />{item.get('text')}</span>} style={{ color: 'rgb(32, 32, 32)' }}>
-                                                {item.get('children').map((menuItem) => {
+                                            <SubMenu key={item.id} title={<span><Icon type="menu" />{item.text}</span>} style={{ color: 'rgb(32, 32, 32)' }}>
+                                                {item.children.map((menuItem) => {
                                                     return (
-                                                        <Menu.Item key={menuItem.get('id')}>
-                                                            <Link to={menuItem.get('url')} key={menuItem.get('id')}>
+                                                        <Menu.Item key={menuItem.id}>
+                                                            <Link to={menuItem.url} key={menuItem.id}>
                                                                 <Icon type="arrow-right" />
-                                                                {menuItem.get('text')}
+                                                                {menuItem.text}
                                                             </Link>
                                                         </Menu.Item>
                                                     )
@@ -73,7 +73,7 @@ class Home extends Component {
     }
 }
 const mapState = (state) => ({
-    menuData: state.getIn(['home', 'menuData']),
+    menuData: state.home.menuData
 })
 const mapProps = (dispatch) => {
     return {

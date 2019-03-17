@@ -1,61 +1,60 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ZeroList from '../../business/zeroList'
+import { actionCreators } from './store';
 
 class LoanList extends Component {
+    componentDidMount() {
+        this.props.init()
+    }
     render() {
-        const dataSource = [{
-            key: '1',
-            name: '胡彦斌',
-            age: 32,
-            address: '西湖区湖底公园1号'
-        }, {
-            key: '2',
-            name: '胡彦祖',
-            age: 42,
-            address: '西湖区湖底公园1号'
-        }];
-
         const columns = [{
+            title: 'id',
+            dataIndex: 'id',
+        }, {
+            title: '贷款编号',
+            dataIndex: 'loanNo',
+        }, {
             title: '姓名',
             dataIndex: 'name',
-            key: 'name',
         }, {
-            title: '年龄',
-            dataIndex: 'age',
-            key: 'age',
+            title: '金额',
+            dataIndex: 'amount',
         }, {
-            title: '住址',
-            dataIndex: 'address',
-            key: 'address',
+            title: '申请日期',
+            dataIndex: 'applyDate',
+        }, {
+            title: '工序',
+            dataIndex: 'status',
         }]
         const buttons = [{
-            title: 'button1',
-            handleClick: (row, rows) => {
-                console.info(row)
+            title: '删除',
+            handleClick: (rows) => {
                 console.info(rows)
+
             },
             disable: false
         }, {
             title: 'button2',
-            handleClick: (e, row, rows) => {
-                console.info(e)
-                console.info(row)
+            handleClick: (rows) => {
                 console.info(rows)
             },
             disabled: false
         }]
         return (
-            <ZeroList buttons={buttons} columns={columns} dataSource={dataSource} />
+            // <ZeroList pagination multiSelect buttons={buttons} columns={columns} dataSource={this.props.loanList} />
+            <ZeroList multiSelect buttons={buttons} columns={columns} dataSource={this.props.loanList} />
         )
     }
 }
 const mapState = (state) => ({
-
+    loanList: state.loanList.loanList
 })
-const mapProps = (dispatch) => {
+const mapDispatch = (dispatch) => {
     return {
-
+        init() {
+            dispatch(actionCreators.init())
+        }
     }
 }
-export default connect(mapState, mapProps)(LoanList)
+export default connect(mapState, mapDispatch)(LoanList)
