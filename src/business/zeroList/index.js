@@ -2,14 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Table, Button } from 'antd';
 import { actionCreators } from './store'
-
-import './style.css'
+import { withRouter } from 'react-router-dom'
 
 class ZeroList extends Component {
 
     componentDidMount() {
         this.props.initProps(this.props)
-        // this.props.fetchData(this.props.dataUrl)
     }
 
     static defaultProps = {
@@ -41,7 +39,7 @@ class ZeroList extends Component {
                             onClick: (event) => {
                                 this.props.handleRowClick(event, record)
                             },
-                            onDoubleClick: (event) => { },
+                            onDoubleClick: (event) => { this.props.handleRowDoubleClick(event, record) },
                             onContextMenu: (event) => { },
                             onMouseEnter: (event) => { },
                             onMouseLeave: (event) => { }
@@ -58,6 +56,13 @@ class ZeroList extends Component {
                         return isSelectedRow ? 'selectedRow' : null
                     }}
                 />
+                <style>
+                    {`
+                        .selectedRow {
+                            background-color: #E9F7FE;
+                        }
+                    `}
+                </style>
             </div >
         )
     }
@@ -81,4 +86,4 @@ const mapDispatch = (dispatch) => {
         }
     }
 }
-export default connect(mapState, mapDispatch)(ZeroList)
+export default connect(mapState, mapDispatch)(withRouter(ZeroList))

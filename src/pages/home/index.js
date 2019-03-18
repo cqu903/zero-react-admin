@@ -3,13 +3,23 @@ import { connect } from 'react-redux'
 import { Layout, Menu, Icon } from 'antd';
 import { HomeWrapper } from './style'
 import { actionCreators as homeActionCreators } from './store'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, withRouter } from 'react-router-dom'
 
 import routes from '../routes'
 import Header from '../../common/header'
+import Breadcrumb from './components/breadcrumb';
 
 
 class Home extends Component {
+    state = {
+        collapsed: false,
+    };
+
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    }
     componentDidMount() {
         this.props.loadMenuData()
     }
@@ -18,7 +28,7 @@ class Home extends Component {
         const { SubMenu } = Menu
         const { menuData } = this.props
         return (
-            <HomeWrapper>
+            < HomeWrapper >
                 <Layout style={{ height: '100%' }}>
                     <Layout.Header style={{ background: '#fff', borderBottom: '1px solid #f0f0f0' }}>
                         <Header></Header>
@@ -52,15 +62,14 @@ class Home extends Component {
                         </Sider>
                         <Content style={{
                             background: '#fff',
-                            padding: '7px',
-                            border: '1px solid #eee',
-                            margin: '0 0 0 2px',
+                            margin: '0 3px',
                             minHeight: 280
                         }}>
+                            <Breadcrumb routes={routes}></Breadcrumb>
                             {
                                 routes.map((route) => {
                                     return (
-                                        <Route key={route.path} path={route.path} component={route.component} exact ></Route>
+                                        <Route key={route.path} path={route.path} component={route.component} exact></Route>
                                     )
                                 })
                             }
@@ -82,4 +91,4 @@ const mapProps = (dispatch) => {
         }
     }
 }
-export default connect(mapState, mapProps)(Home)
+export default connect(mapState, mapProps)(withRouter(Home))

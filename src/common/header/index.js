@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Logo, Addition, Title } from './style'
-import { Avatar, Row, Col } from 'antd';
+import { Avatar, Row, Col } from 'antd'
 
 class Header extends Component {
     render() {
         return (
-            <Row>
+            <Row >
                 <Col span={4}>
                     <Link to='/'>
                         <Logo />
@@ -24,7 +24,6 @@ class Header extends Component {
                     </Addition>
                 </Col>
             </Row>
-
         )
     }
 }

@@ -6,3 +6,4 @@ export const HomeWrapper = styled.div`
     bottom: 0;
     top: 0;
 `
+

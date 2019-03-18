@@ -32,7 +32,6 @@ export default (state = defaultState, action) => {
             } else {
                 newState.selectedRows.splice(findIndex, 1)
             }
-            console.info(newState.selectedRows)
             return newState
         default:
             return state

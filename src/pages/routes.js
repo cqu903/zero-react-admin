@@ -5,15 +5,23 @@ import LoanDetail from './loanDetail'
 const routes = [
     {
         path: '/',
-        component: () => <Welcome />
+        component: () => <Welcome />,
+        name: '主页'
     },
     {
         path: '/loanList',
-        component: () => <LoanList></LoanList>
+        component: () => <LoanList></LoanList>,
+        name: '贷款列表'
     },
     {
-        path: '/loanDetail',
-        component: () => <LoanDetail></LoanDetail>
+        path: '/loanDetail/:id',
+        component: () => <LoanDetail></LoanDetail>,
+        name: '贷款详情'
+    },
+    {
+        path: '/loanDetail/:id/:name/tt',
+        component: () => <LoanDetail></LoanDetail>,
+        name: '贷款详情tt'
     }
 ]
 export default routes
