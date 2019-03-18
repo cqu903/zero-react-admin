@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Layout, Menu, Icon } from 'antd';
-import { HomeWrapper } from './style'
 import { actionCreators as homeActionCreators } from './store'
 import { Route, Link, withRouter } from 'react-router-dom'
 
 import routes from '../routes'
-import Header from '../../common/header'
 import Breadcrumb from './components/breadcrumb';
 
+import 'antd/dist/antd.css'
+import './style.css'
 
 class Home extends Component {
     state = {
@@ -24,45 +24,50 @@ class Home extends Component {
         this.props.loadMenuData()
     }
     render() {
-        const { Sider, Content, } = Layout
         const { SubMenu } = Menu
         const { menuData } = this.props
         return (
-            < HomeWrapper >
-                <Layout style={{ height: '100%' }}>
-                    <Layout.Header style={{ background: '#fff', borderBottom: '1px solid #f0f0f0' }}>
-                        <Header></Header>
-                    </Layout.Header>
+            <div id='components-layout-demo-custom-trigger'>
+                <Layout>
+                    <Layout.Sider
+                        trigger={null}
+                        collapsible
+                        collapsed={this.state.collapsed}
+                    >
+                        <div className="logo" />
+                        <Menu mode="inline" theme='dark' inlineIndent={20}>
+                            {
+                                menuData.map((item) => {
+                                    return (
+                                        <SubMenu key={item.id} title={<span><Icon type="menu" />{item.text}</span>}>
+                                            {item.children.map((menuItem) => {
+                                                return (
+                                                    <Menu.Item key={menuItem.id}>
+                                                        {/* <Link to={menuItem.url} key={menuItem.id}> */}
+                                                        <Icon type="arrow-right" />
+                                                        <span>{menuItem.text}</span>
+                                                        {/* </Link> */}
+                                                    </Menu.Item>
+                                                )
+                                            })}
+                                        </SubMenu>
+                                    )
+                                })
+                            }
+                        </Menu>
+                    </Layout.Sider>
                     <Layout>
-                        <Sider width={200}>
-                            <Menu
-                                mode="inline"
-                                defaultSelectedKeys={['1']}
-                                defaultOpenKeys={['sub1']}
-                                style={{ height: '100%', background: 'rgb(250, 250, 250)' }}>
-                                {
-                                    menuData.map((item) => {
-                                        return (
-                                            <SubMenu key={item.id} title={<span><Icon type="menu" />{item.text}</span>} style={{ color: 'rgb(32, 32, 32)' }}>
-                                                {item.children.map((menuItem) => {
-                                                    return (
-                                                        <Menu.Item key={menuItem.id}>
-                                                            <Link to={menuItem.url} key={menuItem.id}>
-                                                                <Icon type="arrow-right" />
-                                                                {menuItem.text}
-                                                            </Link>
-                                                        </Menu.Item>
-                                                    )
-                                                })}
-                                            </SubMenu>
-                                        )
-                                    })
-                                }
-                            </Menu>
-                        </Sider>
-                        <Content style={{
+                        <Layout.Header style={{ background: '#fff', padding: 0 }}>
+                            <Icon
+                                className="trigger"
+                                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                                onClick={this.toggle}
+                            />
+                        </Layout.Header>
+                        <Layout.Content style={{
+                            margin: '24px 16px',
+                            padding: 24,
                             background: '#fff',
-                            margin: '0 3px',
                             minHeight: 280
                         }}>
                             <Breadcrumb routes={routes}></Breadcrumb>
@@ -73,11 +78,11 @@ class Home extends Component {
                                     )
                                 })
                             }
-                        </Content>
+                        </Layout.Content>
                     </Layout>
-
                 </Layout >
-            </HomeWrapper >
+            </div>
+
         )
     }
 }
