@@ -7,6 +7,7 @@ import Header from './components/Header'
 
 class Home extends Component {
     render() {
+        console.info('home')
         return (
             <div id='components-layout-demo-custom-trigger'>
                 <Layout>
