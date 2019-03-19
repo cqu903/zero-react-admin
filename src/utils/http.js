@@ -1,10 +1,13 @@
+import axios from 'axios'
+
 // 配置API接口地址
 // const root = 'http://192.168.102.121:8080/api'
 // const root = window.location.protocol + '//' + window.location.host + '/api'
 // const root = '/mock/27/api'
+
 const root = 'http://yapi.aeasycredit.net/'
 // 引用axios
-import axios from 'axios'
+
 
 axios.interceptors.request.use(
   config => {
@@ -53,7 +56,7 @@ function fileUpload(file, url) {
       .then(res => {
         resolve(res.data)
       })
-      .catch(function(err) {
+      .catch(function (err) {
         reject(err)
       })
   })
