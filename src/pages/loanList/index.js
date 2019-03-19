@@ -7,7 +7,7 @@ class LoanList extends Component {
         return (
             <ZeroList
                 multiSelect
-                pagination
+                // pagination
                 buttons={[{
                     title: '新增',
                     handleClick: (rows) => {

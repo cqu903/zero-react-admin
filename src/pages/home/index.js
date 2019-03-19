@@ -1,68 +1,25 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Layout, Menu, Icon } from 'antd';
-import { actionCreators as homeActionCreators } from './store'
-import { Route, Link, withRouter } from 'react-router-dom'
-
+import { Layout } from 'antd';
+import Sider from './components/Sider'
+import { Route } from 'react-router-dom'
 import routes from '../routes'
-import Breadcrumb from './components/breadcrumb';
-
-import 'antd/dist/antd.css'
-import './style.css'
+import Header from './components/Header'
 
 class Home extends Component {
-    state = {
-        collapsed: false,
-    };
-
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        });
-    }
-    componentDidMount() {
-        this.props.loadMenuData()
-    }
     render() {
-        const { SubMenu } = Menu
-        const { menuData } = this.props
         return (
             <div id='components-layout-demo-custom-trigger'>
                 <Layout>
                     <Layout.Sider
-                        trigger={null}
-                        collapsible
-                        collapsed={this.state.collapsed}
+                        collapsible={false}
+                        width={240}
+                        style={{ minHeight: 1500 }}
                     >
-                        <div className="logo" />
-                        <Menu mode="inline" theme='dark' inlineIndent={20}>
-                            {
-                                menuData.map((item) => {
-                                    return (
-                                        <SubMenu key={item.id} title={<span><Icon type="menu" />{item.text}</span>}>
-                                            {item.children.map((menuItem) => {
-                                                return (
-                                                    <Menu.Item key={menuItem.id}>
-                                                        {/* <Link to={menuItem.url} key={menuItem.id}> */}
-                                                        <Icon type="arrow-right" />
-                                                        <span>{menuItem.text}</span>
-                                                        {/* </Link> */}
-                                                    </Menu.Item>
-                                                )
-                                            })}
-                                        </SubMenu>
-                                    )
-                                })
-                            }
-                        </Menu>
+                        <Sider dataUrl={this.props.dataUrl} />
                     </Layout.Sider>
                     <Layout>
                         <Layout.Header style={{ background: '#fff', padding: 0 }}>
-                            <Icon
-                                className="trigger"
-                                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                                onClick={this.toggle}
-                            />
+                            <Header />
                         </Layout.Header>
                         <Layout.Content style={{
                             margin: '24px 16px',
@@ -70,7 +27,7 @@ class Home extends Component {
                             background: '#fff',
                             minHeight: 280
                         }}>
-                            <Breadcrumb routes={routes}></Breadcrumb>
+
                             {
                                 routes.map((route) => {
                                     return (
@@ -86,14 +43,4 @@ class Home extends Component {
         )
     }
 }
-const mapState = (state) => ({
-    menuData: state.home.menuData
-})
-const mapProps = (dispatch) => {
-    return {
-        loadMenuData() {
-            dispatch(homeActionCreators.loadMenuData())
-        }
-    }
-}
-export default connect(mapState, mapProps)(withRouter(Home))
+export default Home
