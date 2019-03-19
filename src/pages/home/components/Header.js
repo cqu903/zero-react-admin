@@ -1,11 +1,10 @@
-import React, { PureComponent, Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Badge } from 'antd'
-import { connect } from 'react-redux'
 import Breadcrumb from './Breadcrumb'
 import routes from '../../routes'
 
-class Header extends PureComponent {
+class Header extends Component {
     render() {
         return (
             <Fragment>
@@ -26,4 +25,4 @@ class Header extends PureComponent {
         )
     }
 }
-export default connect(null, null)(Header)
+export default Header
