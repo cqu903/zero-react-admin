@@ -1,11 +1,13 @@
 import axios from 'axios'
 
-import { DEV_BACKEND_URL } from '../config/development'
+import { DEV_BACKEND_SERVER_URL } from '../config/development'
 
 let root = ''
 if (process.env.NODE_ENV === 'development') {
-  root = DEV_BACKEND_URL
-  console.log('current mode is development, remote backend url is ' + root)
+  root = DEV_BACKEND_SERVER_URL
+  console.log(
+    'current mode is development, remote backend server url is ' + root
+  )
 }
 
 axios.interceptors.request.use(

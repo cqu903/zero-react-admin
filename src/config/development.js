@@ -4,4 +4,4 @@
  */
 
 // remote backend url
-export const DEV_BACKEND_URL = 'http://192.168.108.183:8300'
+export const DEV_BACKEND_SERVER_URL = 'http://192.168.108.183:8300'
