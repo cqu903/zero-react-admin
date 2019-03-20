@@ -1,6 +1,12 @@
 import axios from 'axios'
 
-const root = 'http://192.168.108.183:8300'
+import { DEV_BACKEND_URL } from '../config/development'
+
+let root = ''
+if (process.env.NODE_ENV === 'development') {
+  root = DEV_BACKEND_URL
+  console.log('current mode is development, remote backend url is ' + root)
+}
 
 axios.interceptors.request.use(
   config => {
