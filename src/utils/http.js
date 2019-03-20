@@ -1,17 +1,9 @@
 import axios from 'axios'
 
-// 配置API接口地址
-// const root = 'http://192.168.102.121:8080/api'
-// const root = window.location.protocol + '//' + window.location.host + '/api'
-// const root = '/mock/27/api'
-
-const root = 'http://yapi.aeasycredit.net/'
-// 引用axios
-
+const root = 'http://192.168.108.183:8300'
 
 axios.interceptors.request.use(
   config => {
-    console.log('request......')
     return config
   },
   error => {
@@ -24,7 +16,7 @@ axios.interceptors.request.use(
  */
 axios.interceptors.response.use(
   response => {
-    console.log('response......')
+    console.log('response...' + response)
     if (
       response.request.responseURL !== undefined &&
       response.request.responseURL !== '' &&
@@ -56,7 +48,7 @@ function fileUpload(file, url) {
       .then(res => {
         resolve(res.data)
       })
-      .catch(function (err) {
+      .catch(function(err) {
         reject(err)
       })
   })
@@ -75,7 +67,8 @@ function apiAxios(method, url, params) {
       url: url,
       data: method === 'POST' || method === 'PUT' ? params : null,
       params: method === 'GET' || method === 'DELETE' ? params : null,
-      baseURL: root
+      baseURL: root,
+      withCredentials: true
     })
       .then(res => {
         resolve(res.data)

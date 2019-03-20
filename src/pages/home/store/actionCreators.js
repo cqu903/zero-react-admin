@@ -10,7 +10,7 @@ const initMenuData = data => ({
 export const loadMenuData = () => {
   return dispatch => {
     http
-      .get('/mock/33/api/getMenu')
+      .get('/api/menu/getTestMenuJson')
       .then(data => {
         dispatch(initMenuData(data))
       })
