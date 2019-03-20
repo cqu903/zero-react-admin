@@ -17,13 +17,5 @@ export const loadMenuData = () => {
       .catch(err => {
         console.info(err)
       })
-    /* axios
-      .get('/api/menu.json')
-      .then(res => {
-        dispatch(initMenuData(res.data))
-      })
-      .catch(err => {
-        console.info(err)
-      }) */
   }
 }
