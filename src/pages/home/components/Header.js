@@ -7,7 +7,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { DEV_BACKEND_SERVER_URL } from 'config/development'
 import { actionCreators as homeActionCreators } from '../store'
-import './sider.scss'
+// import './sider.scss'
+import { MyIcon } from '../style'
 import http from 'utils/http'
 
 class Header extends Component {
@@ -78,8 +79,7 @@ class Header extends Component {
       <Fragment>
         <Row>
           <Col span={1}>
-            <Icon
-              className="trigger"
+            <MyIcon
               type={collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={toggle}
             />

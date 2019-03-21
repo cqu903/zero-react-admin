@@ -1,10 +1,22 @@
 import styled from 'styled-components'
 import logoImg from '../../statics/small_logo.png'
 import { Link } from 'react-router-dom'
+import { Icon } from 'antd'
 
 export const BreadcrumbWrapper = styled.div`
   width: 100%;
   font-size: 14px;
+`
+export const MyIcon = styled(Icon)`
+  font-size: 18px;
+  line-height: 64px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  :hover {
+    color: #1890ff;
+  }
 `
 export const BreadcurmbLink = styled(Link)`
   color: rgba(0, 0, 0, 0.45);
