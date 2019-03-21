@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import logoImg from '../../statics/logo.svg'
+import logoImg from '../../statics/small_logo.png'
 import { Link } from 'react-router-dom'
 
 export const BreadcrumbWrapper = styled.div`
@@ -18,6 +18,8 @@ export const Logo = styled.div`
   background: #002140;
   background-image: url(${logoImg});
   background-repeat: no-repeat;
-  background-size: 150px;
-  background-position: center center;
+  background-size: 25px 40px;
+  background-position: 30px;
+  color: #fff;
+  font-size: 20px;
 `

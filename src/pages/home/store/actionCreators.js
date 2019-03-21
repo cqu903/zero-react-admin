@@ -19,3 +19,9 @@ export const loadMenuData = () => {
       })
   }
 }
+
+// declared: sider toggle action function
+export const siderToggle = {
+  type: actionTypes.SIDER_TOGGLE,
+  payload: {}
+}

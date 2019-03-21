@@ -3,11 +3,18 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Badge, Icon, Dropdown, Menu, Modal } from 'antd'
 import Breadcrumb from './Breadcrumb'
 import routes from '../../routes'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { DEV_BACKEND_SERVER_URL } from 'config/development'
+import { actionCreators as homeActionCreators } from '../store'
+import './sider.scss'
+import http from 'utils/http'
 
 class Header extends Component {
   state = {
-    visible: false
+    visible: false,
+    loginName: '',
+    trueName: ''
   }
   handleMenuClick = e => {
     if (e.key === '2') {
@@ -20,6 +27,20 @@ class Header extends Component {
   handleVisibleChange = flag => {
     this.setState({ visible: flag })
     console.log('handleVisibleChange...')
+  }
+
+  componentWillMount = () => {
+    http
+      .get('/api/user/getLoginUser')
+      .then(rs => {
+        this.setState({
+          loginName: rs.data.loginName,
+          trueName: rs.data.trueName
+        })
+      })
+      .catch(err => {
+        console.info(err)
+      })
   }
 
   showConfirm = () => {
@@ -40,10 +61,17 @@ class Header extends Component {
   }
 
   render() {
+    const { collapsed, toggle } = this.props
     const menu = (
       <Menu onClick={this.handleMenuClick}>
-        <Menu.Item key="1">修改密码</Menu.Item>
-        <Menu.Item key="2">退出系统</Menu.Item>
+        <Menu.Item key="1">
+          <Icon type="profile" />
+          修改密码
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="logout" />
+          退出系统
+        </Menu.Item>
       </Menu>
     )
     return (
@@ -51,17 +79,18 @@ class Header extends Component {
         <Row>
           <Col span={1}>
             <Icon
-              type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={() => this.props.onClick()}
-              style={{
-                margin: '5px 2px'
-              }}
+              className="trigger"
+              type={collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={toggle}
             />
           </Col>
           <Col span={6}>
             <Breadcrumb routes={routes} />
           </Col>
-          <Col span={12} />
+          <Col span={8} />
+          <Col span={4}>
+            {this.state.loginName}( {this.state.trueName} )，欢迎您！
+          </Col>
           <Col span={3}>
             <Badge count={5} offset={[10, 0]}>
               <Link to="/wait_process_list">
@@ -86,4 +115,18 @@ class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = state => ({
+  collapsed: state.home.collapsed
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggle() {
+      dispatch(homeActionCreators.siderToggle)
+    }
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Header))
