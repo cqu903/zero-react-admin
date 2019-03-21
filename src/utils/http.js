@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-import { DEV_BACKEND_SERVER_URL } from '../config/development'
+import { DEV_BACKEND_SERVER_URL } from 'config/development'
 
 let root = ''
 if (process.env.NODE_ENV === 'development') {

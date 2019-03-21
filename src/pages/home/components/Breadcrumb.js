@@ -12,6 +12,10 @@ class Breadcrumb extends PureComponent {
       currentPath: '/'
     }
   }
+  componentWillMount() {
+    // first enter, get router name from props.location
+    this.getRouteName(this.props.location.pathname)
+  }
   componentDidMount() {
     // 监听路由变化
     this.props.history.listen(currentRoute => {
@@ -37,8 +41,6 @@ class Breadcrumb extends PureComponent {
     })
   }
   renderPath() {
-    // first enter, get router name from props.location
-    this.getRouteName(this.props.location.pathname)
     if ('/' !== this.props.location.pathname) {
       return (
         <div>
