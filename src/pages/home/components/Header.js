@@ -7,14 +7,15 @@ import styles from './sider.scss'
 
 class Header extends Component {
   render() {
+    const { collapsed, toggle } = this.props
     return (
       <Fragment>
         <Row>
           <Col span={1}>
             <Icon
               className={styles.trigger}
-              type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={() => this.props.onClick()}
+              type={collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={toggle}
             />
           </Col>
           <Col span={6}>

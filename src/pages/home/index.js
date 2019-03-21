@@ -36,7 +36,7 @@ class Home extends Component {
           </Layout.Sider>
           <Layout>
             <Layout.Header style={{ background: '#fff', padding: 0 }}>
-              <Header collapsed={this.state.collapsed} onClick={this.toggle} />
+              <Header collapsed={this.state.collapsed} toggle={this.toggle} />
             </Layout.Header>
             <Layout.Content
               style={{
