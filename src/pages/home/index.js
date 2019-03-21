@@ -1,42 +1,30 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
 import Sider from './components/Sider'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 import routes from '../routes'
+import { connect } from 'react-redux'
 import Header from './components/Header'
 
 class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      collapsed: false
-    }
-  }
-
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed
-    })
-  }
-
   render() {
     console.info('home')
+    const { collapsed } = this.props
     return (
       <div id="components-layout-demo-custom-trigger">
         <Layout>
           <Layout.Sider
             trigger={null}
             collapsible
-            collapsed={this.state.collapsed}
+            collapsed={collapsed}
             width={240}
             style={{ minHeight: 1500 }}
           >
-            <Sider dataUrl={this.props.dataUrl} />
+            <Sider />
           </Layout.Sider>
           <Layout>
             <Layout.Header style={{ background: '#fff', padding: 0 }}>
-              <Header collapsed={this.state.collapsed} toggle={this.toggle} />
+              <Header collapsed={collapsed} />
             </Layout.Header>
             <Layout.Content
               style={{
@@ -66,4 +54,15 @@ class Home extends Component {
     )
   }
 }
-export default Home
+
+const mapStateToProps = state => ({
+  collapsed: state.home.collapsed
+})
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Home))

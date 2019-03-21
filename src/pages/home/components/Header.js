@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Badge, Icon } from 'antd'
 import Breadcrumb from './Breadcrumb'
 import routes from '../../routes'
-import styles from './sider.scss'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { actionCreators as homeActionCreators } from '../store'
+// import styles from './sider.scss'
 
 class Header extends Component {
   render() {
@@ -13,7 +16,7 @@ class Header extends Component {
         <Row>
           <Col span={1}>
             <Icon
-              className={styles.trigger}
+              // className={styles.trigger}
               type={collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={toggle}
             />
@@ -34,4 +37,19 @@ class Header extends Component {
     )
   }
 }
-export default Header
+
+const mapStateToProps = state => ({
+  collapsed: state.home.collapsed
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggle() {
+      dispatch(homeActionCreators.siderToggle)
+    }
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Header))

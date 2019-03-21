@@ -1,4 +1,5 @@
 export const LOAD_MENU_DATA = 'home/load_menu_data'
 export const INIT_MENU_DATA = 'home/init_menu_data'
+export const SIDER_TOGGLE = 'home/sider_toggle'
 export const ADD_TAB = 'home/add_tab'
 export const SELECT_TAB = 'home/select_tab'

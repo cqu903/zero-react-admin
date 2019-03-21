@@ -7,6 +7,12 @@ const initMenuData = data => ({
   data
 })
 
+// declared: sider toggle action function
+export const siderToggle = {
+  type: actionTypes.SIDER_TOGGLE,
+  payload: {}
+}
+
 export const loadMenuData = () => {
   return dispatch => {
     http
