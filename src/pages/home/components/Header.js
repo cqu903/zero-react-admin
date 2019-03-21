@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Badge, Icon } from 'antd'
 import Breadcrumb from './Breadcrumb'
 import routes from '../../routes'
-import styles from './sider.scss'
 
 class Header extends Component {
   render() {
@@ -12,9 +11,11 @@ class Header extends Component {
         <Row>
           <Col span={1}>
             <Icon
-              className={styles.trigger}
               type={this.props.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={() => this.props.onClick()}
+              style={{
+                margin: '5px 2px'
+              }}
             />
           </Col>
           <Col span={6}>
@@ -33,4 +34,5 @@ class Header extends Component {
     )
   }
 }
+
 export default Header

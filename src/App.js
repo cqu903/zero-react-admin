@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Globalstyle } from './style'
 import { IconGlobal } from './statics/iconfont/iconfont'
 import store from './store'
@@ -9,8 +9,6 @@ import 'antd/dist/antd.css'
 import Login from './pages/login'
 import Home from './pages/home'
 
-
-
 class App extends Component {
   render() {
     return (
@@ -19,8 +17,8 @@ class App extends Component {
         <IconGlobal />
         <BrowserRouter>
           <div>
-            <Route path='/login' component={Login} exact />
-            <Route path='/' component={Home} />
+            <Route path="/login" component={Login} exact />
+            <Route path="/" component={Home} />
           </div>
         </BrowserRouter>
       </Provider>
@@ -28,4 +26,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
