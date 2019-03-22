@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { DEV_BACKEND_SERVER_URL } from 'config/development'
+import { DEV_BACKEND_SERVER_URL, WITH_CREDENTIALS } from 'config/development'
 
 let root = ''
 if (process.env.NODE_ENV === 'development') {
@@ -65,18 +65,24 @@ function fileUpload(file, url) {
  * axios common api
  */
 function apiAxios(method, url, params) {
+  let ajaxObj = {
+    method: method,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    url: url,
+    data: method === 'POST' || method === 'PUT' ? params : null,
+    params: method === 'GET' || method === 'DELETE' ? params : null,
+    baseURL: root
+  }
+  // dev enviroment
+  if (process.env.NODE_ENV === 'development') {
+    ajaxObj['withCredentials'] = WITH_CREDENTIALS
+  } else {
+    ajaxObj['withCredentials'] = true
+  }
   return new Promise((resolve, reject) => {
-    axios({
-      method: method,
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      url: url,
-      data: method === 'POST' || method === 'PUT' ? params : null,
-      params: method === 'GET' || method === 'DELETE' ? params : null,
-      baseURL: root,
-      withCredentials: true
-    })
+    axios(ajaxObj)
       .then(res => {
         resolve(res.data)
       })

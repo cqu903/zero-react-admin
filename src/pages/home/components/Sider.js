@@ -39,13 +39,41 @@ class Sider extends PureComponent {
                 }
               >
                 {item.children.map(menuItem => {
-                  return (
-                    <Menu.Item key={menuItem.id}>
-                      <Link to={menuItem.url} key={menuItem.id}>
-                        {menuItem.text}
-                      </Link>
-                    </Menu.Item>
-                  )
+                  if (Array.isArray(menuItem.children)) {
+                    // has thrid menu
+                    return (
+                      <SubMenu key={menuItem.id} title={menuItem.text}>
+                        {menuItem.children.map(subMenuItem => {
+                          console.info('subMenuItem', subMenuItem.text)
+                          return (
+                            <Menu.Item key={subMenuItem.id}>
+                              {subMenuItem.url !== null &&
+                              subMenuItem.url !== '' ? (
+                                <Link to={subMenuItem.url} key={subMenuItem.id}>
+                                  {subMenuItem.text}
+                                </Link>
+                              ) : (
+                                <span>{subMenuItem.text}</span>
+                              )}
+                            </Menu.Item>
+                          )
+                        })}
+                      </SubMenu>
+                    )
+                  } else {
+                    // hasn't third menu
+                    return (
+                      <Menu.Item key={menuItem.id}>
+                        {menuItem.url !== null && menuItem.url !== '' ? (
+                          <Link to={menuItem.url} key={menuItem.id}>
+                            {menuItem.text}
+                          </Link>
+                        ) : (
+                          <span>{item.text}</span>
+                        )}
+                      </Menu.Item>
+                    )
+                  }
                 })}
               </SubMenu>
             )

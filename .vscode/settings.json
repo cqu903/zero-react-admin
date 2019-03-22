@@ -1,11 +1,8 @@
 {
     "javascript.format.enable": true,
-    "javascript.format.insertSpaceAfterCommaDelimiter": true,
+  //   "javascript.format.insertSpaceAfterCommaDelimiter": true,
     "editor.formatOnSave": true,
-    "editor.tabSize": 4,
-    "eslint.autoFixOnSave": true,
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact"
-    ]
+  "editor.tabSize": 4,
+  // "eslint.autoFixOnSave": true,
+  "eslint.validate": ["javascript", "javascriptreact"]
 }
