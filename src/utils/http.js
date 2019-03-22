@@ -23,7 +23,7 @@ axios.interceptors.request.use(
  */
 axios.interceptors.response.use(
   response => {
-    console.log('response...' + response)
+    // console.log('response...' + response)
     if (
       response.request.responseURL !== undefined &&
       response.request.responseURL !== '' &&

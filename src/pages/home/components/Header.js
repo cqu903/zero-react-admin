@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Badge, Icon, Dropdown, Menu, Modal } from 'antd'
 import Breadcrumb from './Breadcrumb'
-import routes from '../../routes'
+// import routes from '../../routerMapping'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { DEV_BACKEND_SERVER_URL } from 'config/development'
@@ -85,7 +85,7 @@ class Header extends Component {
             />
           </Col>
           <Col span={6}>
-            <Breadcrumb routes={routes} />
+            <Breadcrumb routes={this.props.routes} />
           </Col>
           <Col span={8} />
           <Col span={4}>

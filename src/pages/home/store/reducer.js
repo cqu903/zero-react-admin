@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes'
+
 const defaultState = {
   menuData: [],
   activeTab: '欢迎页'

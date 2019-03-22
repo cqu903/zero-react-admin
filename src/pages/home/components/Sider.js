@@ -2,12 +2,13 @@ import React, { PureComponent, Fragment } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { Menu, Icon } from 'antd'
 import { connect } from 'react-redux'
-import { actionCreators as homeActionCreators } from '../store'
+// import { actionCreators as homeActionCreators } from '../store'
 import { Logo } from '../style'
 
 class Sider extends PureComponent {
   componentDidMount() {
-    this.props.loadMenuData()
+    // this.props.loadMenuData()
+    // this.props.loadRouter()
   }
   render() {
     const { SubMenu } = Menu
@@ -44,7 +45,7 @@ class Sider extends PureComponent {
                     return (
                       <SubMenu key={menuItem.id} title={menuItem.text}>
                         {menuItem.children.map(subMenuItem => {
-                          console.info('subMenuItem', subMenuItem.text)
+                          // console.info('subMenuItem', subMenuItem.text)
                           return (
                             <Menu.Item key={subMenuItem.id}>
                               {subMenuItem.url !== null &&
@@ -89,9 +90,9 @@ const mapState = state => ({
 })
 const mapProps = dispatch => {
   return {
-    loadMenuData() {
-      dispatch(homeActionCreators.loadMenuData())
-    }
+    // loadMenuData() {
+    //   dispatch(homeActionCreators.loadMenuData())
+    // }
   }
 }
 export default connect(
