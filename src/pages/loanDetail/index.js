@@ -15,7 +15,7 @@ class LoanDetail extends Component {
   render() {
     return (
       <MyTab defaultTab="1">
-        <TabPane forceRender tab="贷款账户详情" key="1" closable={false}>
+        <TabPane forceRender tab="贷款账户详情" key="1">
           <LoanAccountDetail />
         </TabPane>
         <TabPane forceRender tab="客户信息匹配" key="2">

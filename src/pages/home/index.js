@@ -77,8 +77,8 @@ class Home extends Component {
             trigger={null}
             collapsible
             collapsed={collapsed}
-            // width={240}
-            style={{ minHeight: 1500 }}
+          // width={240}
+          // style={{ minHeight: 1500 }}
           >
             <Sider />
           </Layout.Sider>

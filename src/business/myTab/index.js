@@ -16,9 +16,9 @@ class MyTab extends Component {
     this.setState({ activeKey })
   }
 
-  //   onEdit = (targetKey, action) => {
-  //     this[action](targetKey)
-  //   }
+  onEdit = (targetKey, action) => {
+    this[action](targetKey)
+  }
 
   remove = targetKey => {
     let activeKey = this.state.activeKey
@@ -44,7 +44,8 @@ class MyTab extends Component {
       <Tabs
         onChange={this.onChange}
         activeKey={this.state.activeKey}
-        // onEdit={this.onEdit}
+        type="card"
+      // onEdit={this.onEdit}
       >
         {this.props.children}
       </Tabs>
