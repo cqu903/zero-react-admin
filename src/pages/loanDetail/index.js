@@ -1,34 +1,38 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Tabs } from 'antd';
+import MyTab from '../../business/myTab'
+import { Tabs } from 'antd'
+import LoanList from '../../pages/loanList'
 
-import { LoanDetailWrapper } from './style'
+const TabPane = Tabs.TabPane
 
 class LoanDetail extends Component {
+  constructor(props) {
+    super(props)
+  }
 
-    render() {
-
-        return (
-            <LoanDetailWrapper>
-                <Tabs>
-                    <Tabs.TabPane tab='建议' key='建议'>建议</Tabs.TabPane>
-                    <Tabs.TabPane tab='主贷人' key='主贷人'>主贷人</Tabs.TabPane>
-                    <Tabs.TabPane tab='公司专用' key='公司专用'>公司专用</Tabs.TabPane>
-                    <Tabs.TabPane tab='客户信息匹配' key='客户信息匹配'>客户信息匹配</Tabs.TabPane>
-                    <Tabs.TabPane tab='贷款记事本' key='贷款记事本'>贷款记事本</Tabs.TabPane>
-                    <Tabs.TabPane tab='视频审批' key='视频审批'>视频审批</Tabs.TabPane>
-                </Tabs>
-            </LoanDetailWrapper>
-        )
-    }
+  render() {
+    return (
+      <MyTab defaultTab="2">
+        <TabPane forceRender tab="贷款账户详情" key="1" closable={false}>
+          <LoanList />
+        </TabPane>
+        <TabPane forceRender tab="客户信息匹配" key="2">
+          客户信息匹配
+        </TabPane>
+        <TabPane forceRender tab="贷款记事本" key="3">
+          贷款记事本
+        </TabPane>
+      </MyTab>
+    )
+  }
 }
-const mapState = (state) => ({
-
-})
-const mapProps = (dispatch) => {
-    return {
-
-    }
+const mapState = state => ({})
+const mapProps = dispatch => {
+  return {}
 }
-export default connect(mapState, mapProps)(withRouter(LoanDetail))
+export default connect(
+  mapState,
+  mapProps
+)(withRouter(LoanDetail))

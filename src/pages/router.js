@@ -1,6 +1,6 @@
 import React from 'react'
 import LoanList from './loanList'
-// import LoanDetail from './loanDetail'
+import LoanDetail from './loanDetail'
 import Welcome from './welcome'
 
 /**
@@ -14,5 +14,16 @@ export const mapping = [
   {
     path: '/loanAccount/toQueryLoanAccountList',
     component: () => <LoanList />
+  }
+]
+
+/**
+ * 没有在菜单中的路由
+ */
+export const extra = [
+  {
+    path: '/loanDetail/:id',
+    component: () => <LoanDetail />,
+    name: '贷款账户详情'
   }
 ]

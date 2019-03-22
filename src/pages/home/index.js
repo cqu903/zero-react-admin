@@ -29,7 +29,6 @@ class Home extends Component {
     for (let key in routerMapping.mapping) {
       let item = routerMapping.mapping[key]
       if (path === item.path) {
-        console.info('path--->', path)
         return item.component
       }
     }
@@ -69,7 +68,8 @@ class Home extends Component {
   render() {
     // console.info('home')
     const { collapsed, menuData } = this.props
-    let routes = this.transferRouter(menuData)
+    let routes = this.transferRouter(menuData).concat(routerMapping.extra)
+
     return (
       <div id="components-layout-demo-custom-trigger">
         <Layout>
