@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { Menu, Icon } from 'antd'
 import { connect } from 'react-redux'
 // import { actionCreators as homeActionCreators } from '../store'
-import { Logo } from '../style'
+import { Logo, Logo1 } from '../style'
 
 class Sider extends PureComponent {
   componentDidMount() {
@@ -16,10 +16,11 @@ class Sider extends PureComponent {
     return (
       <Fragment>
         <Link to="/">
-          <Logo>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;零在金融
-          </Logo>
+          {collapsed ? (
+            <Logo1 />
+          ) : (
+              <Logo />
+            )}
         </Link>
 
         <Menu
@@ -49,13 +50,13 @@ class Sider extends PureComponent {
                           return (
                             <Menu.Item key={subMenuItem.id}>
                               {subMenuItem.url !== null &&
-                              subMenuItem.url !== '' ? (
-                                <Link to={subMenuItem.url} key={subMenuItem.id}>
-                                  {subMenuItem.text}
-                                </Link>
-                              ) : (
-                                <span>{subMenuItem.text}</span>
-                              )}
+                                subMenuItem.url !== '' ? (
+                                  <Link to={subMenuItem.url} key={subMenuItem.id}>
+                                    {subMenuItem.text}
+                                  </Link>
+                                ) : (
+                                  <span>{subMenuItem.text}</span>
+                                )}
                             </Menu.Item>
                           )
                         })}
@@ -70,8 +71,8 @@ class Sider extends PureComponent {
                             {menuItem.text}
                           </Link>
                         ) : (
-                          <span>{item.text}</span>
-                        )}
+                            <span>{item.text}</span>
+                          )}
                       </Menu.Item>
                     )
                   }

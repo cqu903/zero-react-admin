@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Table, Button } from 'antd'
+import { Table } from 'antd'
 import { actionCreators } from './store'
 import { withRouter } from 'react-router-dom'
 
@@ -28,9 +28,9 @@ class ZeroList extends Component {
               onDoubleClick: event => {
                 this.props.handleRowDoubleClick(event, record)
               },
-              onContextMenu: event => {},
-              onMouseEnter: event => {},
-              onMouseLeave: event => {}
+              onContextMenu: event => { },
+              onMouseEnter: event => { },
+              onMouseLeave: event => { }
             }
           }}
           rowClassName={record => {
