@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import logoImg from '../../statics/logo.svg'
 import logoImg1 from '../../statics/small_logo.png'
 import { Link } from 'react-router-dom'
@@ -30,22 +30,27 @@ export const Logo = styled.div`
     overflow: hidden;
     line-height: 64px;
     background: #002140;
-    background-image: url(${logoImg});
     background-repeat: no-repeat;
-    background-size: 150px;
-    background-position: center center;
+    // 折叠样式
+    ${props => props.collapsed && css`
+      background-image: url(${logoImg1});
+      background-size: 25px 40px;
+      background-position: 30px;
+      color: #fff;
+      font-size: 20px;
+    `}
+    // 展开样式
+    ${props => !props.collapsed && css`
+      background-image: url(${logoImg});
+      background-size: 150px;
+      background-position: center center;
+    `}
+
 `
 
-export const Logo1 = styled.div`
-  position: relative;
-  height: 64px;
-  overflow: hidden;
-  line-height: 64px;
-  background: #002140;
-  background-image: url(${logoImg1});
-  background-repeat: no-repeat;
-  background-size: 25px 40px;
-  background-position: 30px;
-  color: #fff;
-  font-size: 20px;
-`
+// const PropsBox = styled.div(props => ({
+//   background: props.background,
+//   height: '50px',
+//   width: '50px'
+// }));
+

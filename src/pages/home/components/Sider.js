@@ -16,11 +16,7 @@ class Sider extends PureComponent {
     return (
       <Fragment>
         <Link to="/">
-          {collapsed ? (
-            <Logo1 />
-          ) : (
-              <Logo />
-            )}
+          <Logo collapsed={collapsed} />
         </Link>
 
         <Menu
