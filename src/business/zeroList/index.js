@@ -7,12 +7,20 @@ import { withRouter } from 'react-router-dom'
 
 class ZeroList extends Component {
   componentDidMount() {
-    this.props.onRef(this)
+    if (this.props.onRef) {
+      this.props.onRef(this)
+    }
     this.props.initProps(this.props)
+
+    // if (this.props.forceRefresh) {
+    //   this.refreshComponent()
+    // }
   }
 
   componentWillUnmount() {
-    this.props.onRef(undefined)
+    if (this.props.onRef) {
+      this.props.onRef(undefined)
+    }
   }
 
   /**
