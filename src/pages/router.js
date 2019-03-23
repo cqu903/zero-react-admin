@@ -1,4 +1,5 @@
 import React from 'react'
+import { Icon } from 'antd';
 import LoanList from './loanList'
 import LoanDetail from './loanDetail'
 import Welcome from './welcome'
@@ -9,7 +10,7 @@ import Welcome from './welcome'
 export const mapping = [
   {
     path: '/',
-    component: () => <Welcome />
+    component: () => <Welcome />,
   },
   {
     path: '/loanAccount/toQueryLoanAccountList',
@@ -26,4 +27,37 @@ export const extra = [
     component: () => <LoanDetail />,
     name: '贷款账户详情'
   }
+]
+
+/**
+ * 定义菜单的icon
+ */
+export const icons = [
+  {
+    // 菜单对应的id
+    id: "finance_config",
+    // 菜单对应的icon类型
+    type: "trophy"
+  }, {
+    id: "finance",
+    type: "rocket"
+  }, {
+    id: "financeBalance",
+    type: "user"
+  }, {
+    id: "loan_account_config",
+    type: "bulb"
+  }, {
+    id: "Tu_Account_config",
+    type: "compass"
+  }, {
+    id: "file_record_config",
+    type: "shop"
+  }, {
+    id: "night_business_config",
+    type: "global"
+  }, {
+    id: "test_config",
+    type: "robot"
+  },
 ]

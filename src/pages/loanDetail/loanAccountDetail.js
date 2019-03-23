@@ -2,18 +2,41 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ZeroList from '../../business/zeroList'
-import { Tabs, Button, Row, Col } from 'antd'
+import { Tabs, Modal, Button, Row, Col } from 'antd'
 import '../../statics/css/loanList/loanList.css'
 import MyTab from '../../business/myTab'
+import AdminFeeRepayment from './adminFeeRepayment'
 
 const TabPane = Tabs.TabPane
 
 class LoanDetail extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      loading: false,
+      visible: false,
+    }
+  }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  handleOk = () => {
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false, visible: false });
+    }, 3000);
+  }
+
+  handleCancel = () => {
+    this.setState({ visible: false });
   }
 
   render() {
+    const { visible, loading } = this.state;
     return (
       <div>
         <Row type="flex" justify="space-around" align="middle">
@@ -114,12 +137,26 @@ class LoanDetail extends Component {
                     <Button htmlType="submit">
                       刷新
                   </Button>
-                    <Button type="primary" style={{ marginLeft: 8 }} htmlType="submit">
+                    <Button type="primary" style={{ marginLeft: 8 }} htmlType="submit" onClick={this.showModal}>
                       還款
                   </Button>
                     <Button style={{ marginLeft: 8 }} htmlType="submit">
                       退回
                   </Button>
+                    <Modal
+                      visible={visible}
+                      title="新增AdmiFee"
+                      onOk={this.handleOk}
+                      onCancel={this.handleCancel}
+                      footer={[
+                        <Button key="back" onClick={this.handleCancel}>取消</Button>,
+                        <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+                          提交
+            </Button>,
+                      ]}
+                    >
+                      <AdminFeeRepayment />
+                    </Modal>
                   </div>
                   <ZeroList
                     multiSelect

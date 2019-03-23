@@ -4,12 +4,24 @@ import { Menu, Icon } from 'antd'
 import { connect } from 'react-redux'
 // import { actionCreators as homeActionCreators } from '../store'
 import { Logo, Logo1 } from '../style'
+import * as routerMapping from '../../router'
 
 class Sider extends PureComponent {
   componentDidMount() {
     // this.props.loadMenuData()
     // this.props.loadRouter()
   }
+
+  getIcon = id => {
+    for (let key in routerMapping.icons) {
+      let icon = routerMapping.icons[key]
+      if (icon.id === id) {
+        return icon.type
+      }
+    }
+    return ""
+  }
+
   render() {
     const { SubMenu } = Menu
     const { menuData, collapsed } = this.props
@@ -26,12 +38,17 @@ class Sider extends PureComponent {
           inlineCollapsed={collapsed}
         >
           {menuData.map(item => {
+            let icon = null;
+            const iconType = this.getIcon(item.id)
+            if (iconType !== '') {
+              icon = <Icon type={iconType} />
+            }
             return (
               <SubMenu
                 key={item.id}
                 title={
                   <span>
-                    <Icon type="menu" />
+                    {icon}
                     <span>{item.text}</span>
                   </span>
                 }
@@ -39,8 +56,18 @@ class Sider extends PureComponent {
                 {item.children.map(menuItem => {
                   if (Array.isArray(menuItem.children)) {
                     // has thrid menu
+                    let icon = null;
+                    const iconType = this.getIcon(menuItem.id)
+                    if (iconType !== '') {
+                      icon = <Icon type={iconType} />
+                    }
                     return (
-                      <SubMenu key={menuItem.id} title={menuItem.text}>
+                      <SubMenu key={menuItem.id} title={
+                        <span>
+                          {icon}
+                          <span>{menuItem.text}</span>
+                        </span>
+                      }>
                         {menuItem.children.map(subMenuItem => {
                           // console.info('subMenuItem', subMenuItem.text)
                           return (
