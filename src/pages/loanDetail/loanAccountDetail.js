@@ -28,7 +28,13 @@ class LoanDetail extends Component {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false, visible: false });
-    }, 3000);
+    }, 100);
+  }
+
+  refreshContent = () => {
+    this.setState({ loading: true })
+    this.child.refreshComponent()
+    this.setState({ loading: false })
   }
 
   handleCancel = () => {
@@ -134,7 +140,7 @@ class LoanDetail extends Component {
                     <Col span={24} className="title_div">Admin Fee
                     </Col></Row>
                   <div>
-                    <Button htmlType="submit">
+                    <Button htmlType="submit" loading={loading} onClick={this.refreshContent}>
                       刷新
                   </Button>
                     <Button type="primary" style={{ marginLeft: 8 }} htmlType="submit" onClick={this.showModal}>
@@ -159,6 +165,7 @@ class LoanDetail extends Component {
                     </Modal>
                   </div>
                   <ZeroList
+                    onRef={ref => (this.child = ref)}
                     multiSelect
                     // pagination
                     columns={[

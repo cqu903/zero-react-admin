@@ -2,17 +2,35 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Table } from 'antd'
 import { actionCreators } from './store'
+import store from '../../store'
 import { withRouter } from 'react-router-dom'
 
 class ZeroList extends Component {
   componentDidMount() {
+    this.props.onRef(this)
     this.props.initProps(this.props)
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined)
+  }
+
+  /**
+   * see: https://www.jianshu.com/p/ff1420118918
+   * see: https://github.com/kriasoft/react-starter-kit/issues/909
+   */
+  refreshComponent() {
+    // this.forceUpdate();
+    if (this.props.dataUrl) {
+      store.dispatch(actionCreators.initDataList(this.props.dataUrl))
+    }
   }
 
   static defaultProps = {
     pagination: false
   }
   render() {
+    console.info('refresh...')
     return (
       <div>
         <Table
