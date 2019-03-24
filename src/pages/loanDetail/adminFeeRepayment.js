@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
-import ZeroList from '../../business/zeroList'
 import {
-    Form, Input, DatePicker, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+    Form, Input, DatePicker, Select
 } from 'antd';
 import '../../statics/css/loanList/loanList.css'
-import MyTab from '../../business/myTab'
 
 class AdminFeeRepayment extends Component {
     constructor(props) {

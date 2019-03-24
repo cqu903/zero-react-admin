@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { Menu, Icon } from 'antd'
 import { connect } from 'react-redux'
 // import { actionCreators as homeActionCreators } from '../store'
-import { Logo, Logo1 } from '../style'
+import { Logo } from '../style'
 import * as routerMapping from '../../router'
 
 class Sider extends PureComponent {

@@ -57,7 +57,7 @@ class Header extends Component {
           }
         }).catch(() => console.log('Oops errors!'))
       },
-      onCancel() {}
+      onCancel() { }
     })
   }
 
@@ -104,6 +104,7 @@ class Header extends Component {
               onVisibleChange={this.handleVisibleChange}
               visible={this.state.visible}
             >
+              {/* eslint-disable-next-line */}
               <a className="ant-dropdown-link" href="#">
                 控制面板 <Icon type="down" />
               </a>

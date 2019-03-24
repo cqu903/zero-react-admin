@@ -8,10 +8,6 @@ import LoanAccountDetail from '../../pages/loanDetail/loanAccountDetail'
 const TabPane = Tabs.TabPane
 
 class LoanDetail extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <MyTab defaultTab="1">

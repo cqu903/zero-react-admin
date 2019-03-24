@@ -1,5 +1,4 @@
 import React from 'react'
-import { Icon } from 'antd';
 import LoanList from './loanList'
 import LoanDetail from './loanDetail'
 import Welcome from './welcome'

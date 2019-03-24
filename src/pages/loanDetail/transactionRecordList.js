@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 import ZeroList from '../../business/zeroList'
 import {
-    Form, Modal, DatePicker, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+    Form, Modal, Button
 } from 'antd';
 import AdminFeeRepayment from './adminFeeRepayment'
 import '../../statics/css/loanList/loanList.css'
