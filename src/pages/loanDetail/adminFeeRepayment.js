@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom'
 import {
     Form, Input, DatePicker, Select
 } from 'antd';
-import '../../statics/css/loanList/loanList.css'
 
 class AdminFeeRepayment extends Component {
     constructor(props) {

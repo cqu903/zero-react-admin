@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import ZeroList from '../../business/zeroList'
 import { withRouter } from 'react-router-dom'
-import { Form, Button, Input, Row, Col } from 'antd'
+import { Form, Button, Input, Row, Col, Pagination } from 'antd'
 import { SearchWrapper } from './style'
 
 class LoanList extends Component {
+  onShowSizeChange = (current, pageSize) => {
+    console.log(current, pageSize);
+  }
   render() {
     return (
       <Fragment>
@@ -71,6 +74,16 @@ class LoanList extends Component {
             this.props.history.push('/loanDetail/' + record.id)
           }}
         />
+        <Row type="flex" justify="end">
+          <Col span={16} offset={8}>
+            <Pagination
+              style={{ marginTop: 5 }}
+              showSizeChanger
+              onShowSizeChange={this.onShowSizeChange}
+              defaultCurrent={1}
+              total={100} />
+          </Col>
+        </Row>
       </Fragment>
     )
   }

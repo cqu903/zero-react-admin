@@ -5,7 +5,6 @@ import {
     Form, Modal, Button
 } from 'antd';
 import AdminFeeRepayment from './adminFeeRepayment'
-import '../../statics/css/loanList/loanList.css'
 
 class TransactionRecordList extends Component {
     constructor(props) {
@@ -129,8 +128,7 @@ class TransactionRecordList extends Component {
                         {
                             title: '本金實收',
                             dataIndex: 'factRepayPrincipal',
-                            width: 100,
-                            fixed: 'left'
+                            width: 100
                         },
                         {
                             title: '利息結算',
