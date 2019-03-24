@@ -61,10 +61,6 @@ class LoanList extends Component {
               dataIndex: 'usableLimitAmount'
             },
             {
-              title: '上次還款日期',
-              dataIndex: 'lastPaymentDate'
-            },
-            {
               title: '賬戶狀態',
               dataIndex: 'accountStatus'
             }

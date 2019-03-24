@@ -90,39 +90,59 @@ class TransactionRecordList extends Component {
                     // pagination
                     columns={[
                         {
-                            title: '貸款生效日期' + index,
-                            dataIndex: 'startDate'
+                            title: '處理日期',
+                            dataIndex: 'createDate'
                         },
                         {
-                            title: '貸款賬戶編號' + index,
-                            dataIndex: 'serialNumber'
+                            title: '交易日期',
+                            dataIndex: 'dealDate'
                         },
                         {
-                            title: '證件號碼' + index,
-                            dataIndex: 'idcard'
+                            title: '入賬日期',
+                            dataIndex: 'postingDate'
                         },
                         {
-                            title: '客戶姓名' + index,
-                            dataIndex: 'name'
+                            title: '交易摘要',
+                            dataIndex: 'summary'
                         },
                         {
-                            title: '賬戶額度' + index,
-                            dataIndex: 'limitedAmount'
+                            title: '交易金額',
+                            dataIndex: 'amount'
                         },
                         {
-                            title: '剩餘額度' + index,
-                            dataIndex: 'usableLimitAmount'
+                            title: '本金應收',
+                            dataIndex: 'repayPrincipal'
                         },
                         {
-                            title: '上次還款日期' + index,
-                            dataIndex: 'lastPaymentDate'
+                            title: '本金實收',
+                            dataIndex: 'factRepayPrincipal'
                         },
                         {
-                            title: '賬戶狀態' + index,
-                            dataIndex: 'accountStatus'
+                            title: '利息結算',
+                            dataIndex: 'interestSettlement'
+                        },
+                        {
+                            title: '利息應收',
+                            dataIndex: 'interest'
+                        },
+                        {
+                            title: '利息實收',
+                            dataIndex: 'factInterest'
+                        },
+                        {
+                            title: '利息豁免',
+                            dataIndex: 'exemptInterest'
+                        },
+                        {
+                            title: '逾期利息應收',
+                            dataIndex: 'lc'
+                        },
+                        {
+                            title: '逾期利息实收',
+                            dataIndex: 'factLc'
                         }
                     ]}
-                    dataUrl="/api/loanAccount/getAdminFree"
+                    dataUrl="/api/transaction/queryTransactionRecordList"
                     handleRowDoubleClick={(event, record) => {
                     }}
                 />
