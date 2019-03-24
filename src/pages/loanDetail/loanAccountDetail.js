@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { withRouter } from 'react-router-dom'
 import ZeroList from '../../business/zeroList'
 import { Tabs, Modal, Button, Row, Col } from 'antd'
 import MyTab from '../../business/myTab'
@@ -27,6 +28,9 @@ class LoanDetail extends Component {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false, visible: false });
+      // refresh route
+      // this.props.history.push(this.props.location.pathname + '?date=' + new Date().getTime())
+      window.location.reload()
     }, 100);
   }
 
@@ -264,4 +268,4 @@ class LoanDetail extends Component {
   }
 }
 
-export default LoanDetail
+export default withRouter(LoanDetail)

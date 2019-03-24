@@ -25,6 +25,7 @@ class TransactionRecordList extends Component {
         this.setState({ loading: true });
         setTimeout(() => {
             this.setState({ loading: false, visible: false });
+            window.location.reload()
         }, 100);
     }
 
