@@ -86,60 +86,82 @@ class TransactionRecordList extends Component {
                 {myButton}
                 <ZeroList
                     onRef={ref => (this.child = ref)}
+                    scroll={{ x: 1300, y: '100%' }}
                     multiSelect
                     // pagination
                     columns={[
                         {
                             title: '處理日期',
-                            dataIndex: 'createDate'
+                            dataIndex: 'createDate',
+                            width: 100,
+                            fixed: 'left'
                         },
                         {
                             title: '交易日期',
-                            dataIndex: 'dealDate'
+                            dataIndex: 'dealDate',
+                            width: 100,
+                            fixed: 'left'
                         },
                         {
                             title: '入賬日期',
-                            dataIndex: 'postingDate'
+                            dataIndex: 'postingDate',
+                            width: 100,
+                            fixed: 'left'
                         },
                         {
                             title: '交易摘要',
-                            dataIndex: 'summary'
+                            dataIndex: 'summary',
+                            width: 100,
+                            fixed: 'left'
                         },
                         {
                             title: '交易金額',
-                            dataIndex: 'amount'
+                            dataIndex: 'amount',
+                            width: 100,
+                            fixed: 'left'
                         },
                         {
                             title: '本金應收',
-                            dataIndex: 'repayPrincipal'
+                            dataIndex: 'repayPrincipal',
+                            width: 100,
+                            fixed: 'left'
                         },
                         {
                             title: '本金實收',
-                            dataIndex: 'factRepayPrincipal'
+                            dataIndex: 'factRepayPrincipal',
+                            width: 100,
+                            fixed: 'left'
                         },
                         {
                             title: '利息結算',
-                            dataIndex: 'interestSettlement'
+                            dataIndex: 'interestSettlement',
+                            width: 100
                         },
                         {
                             title: '利息應收',
-                            dataIndex: 'interest'
+                            dataIndex: 'interest',
+                            width: 100
                         },
                         {
                             title: '利息實收',
-                            dataIndex: 'factInterest'
+                            dataIndex: 'factInterest',
+                            width: 100
                         },
                         {
                             title: '利息豁免',
-                            dataIndex: 'exemptInterest'
+                            dataIndex: 'exemptInterest',
+                            width: 100
                         },
                         {
                             title: '逾期利息應收',
-                            dataIndex: 'lc'
+                            dataIndex: 'lc',
+                            width: 100
                         },
                         {
                             title: '逾期利息实收',
-                            dataIndex: 'factLc'
+                            dataIndex: 'factLc',
+                            width: 100,
+                            fixed: 'right',
                         }
                     ]}
                     dataUrl="/api/transaction/queryTransactionRecordList"
