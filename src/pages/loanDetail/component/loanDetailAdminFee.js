@@ -4,6 +4,8 @@ import ZeroList from 'business/zeroList'
 import { SplitLineCol } from '../style'
 import AdminFeeRepayment from './adminFeeRepayment'
 
+import RefreshComponent from 'business/zeroList/RefreshComponent'
+
 class LoanDetailAdminFee extends Component {
   constructor(props) {
     super(props)
@@ -11,6 +13,8 @@ class LoanDetailAdminFee extends Component {
       loading: false,
       visible: false
     }
+    this.adminFeeUrl = '/api/loanAccount/getAdminFree'
+    this.adminFeeIndex = 1
   }
 
   showModal = () => {
@@ -31,7 +35,11 @@ class LoanDetailAdminFee extends Component {
 
   refreshContent = () => {
     this.setState({ loading: true })
-    this.child.refreshComponent()
+    // this.child.refreshComponent()
+    RefreshComponent.refresh(this.adminFeeUrl, this.adminFeeIndex)
+    // store.dispatch(
+    //   actionCreators.initDataList(this.adminFeeUrl, this.adminFeeIndex)
+    // )
     this.setState({ loading: false })
   }
 
@@ -94,7 +102,7 @@ class LoanDetailAdminFee extends Component {
               onRef={ref => (this.child = ref)}
               multiSelect
               // pagination
-              index={1}
+              index={this.adminFeeIndex}
               columns={[
                 {
                   title: '貸款生效日期',
@@ -129,9 +137,10 @@ class LoanDetailAdminFee extends Component {
                   dataIndex: 'accountStatus'
                 }
               ]}
-              dataUrl="/api/loanAccount/getAdminFree"
+              dataUrl={this.adminFeeUrl}
               handleRowDoubleClick={(event, record) => {}}
             />
+            /
           </Col>
         </Row>
       </Fragment>

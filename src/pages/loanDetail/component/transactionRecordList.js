@@ -4,6 +4,8 @@ import ZeroList from '../../../business/zeroList'
 import { Form, Modal, Button } from 'antd'
 import AdminFeeRepayment from './adminFeeRepayment'
 
+import RefreshComponent from 'business/zeroList/RefreshComponent'
+
 class TransactionRecordList extends Component {
   constructor(props) {
     super(props)
@@ -11,6 +13,8 @@ class TransactionRecordList extends Component {
       loading: false,
       visible: false
     }
+    this.url = '/api/transaction/queryTransactionRecordList'
+    this.index = 2
   }
 
   showModal = () => {
@@ -29,7 +33,8 @@ class TransactionRecordList extends Component {
 
   refreshContent = () => {
     this.setState({ loading: true })
-    this.child.refreshComponent()
+    // this.child.refreshComponent()
+    RefreshComponent.refresh(this.url, this.index)
     this.setState({ loading: false })
   }
 
@@ -95,11 +100,11 @@ class TransactionRecordList extends Component {
       <div>
         {myButton}
         <ZeroList
-          onRef={ref => (this.child = ref)}
+          // onRef={ref => (this.child = ref)}
           scroll={{ x: 1300, y: '100%' }}
           multiSelect
           // pagination
-          index={2}
+          index={this.index}
           columns={[
             {
               title: '處理日期',
@@ -174,7 +179,7 @@ class TransactionRecordList extends Component {
               fixed: 'right'
             }
           ]}
-          dataUrl="/api/transaction/queryTransactionRecordList"
+          dataUrl={this.url}
           handleRowDoubleClick={(event, record) => {}}
         />
       </div>

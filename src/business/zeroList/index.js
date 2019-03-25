@@ -25,8 +25,8 @@ class ZeroList extends Component {
     pagination: false
   }
   render() {
-    console.info('index...' + this.props.index)
-    console.info('dataList...' + this.props.dataList[this.props.index])
+    // console.info('index...' + this.props.index)
+    // console.info('dataList...' + this.props.dataList[this.props.index])
     return (
       <div>
         <Table
