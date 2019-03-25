@@ -25,22 +25,22 @@ class LoanDetail extends Component {
             <Col>
               <MyTab defaultTab="1">
                 <TabPane forceRender tab="交易記錄" key="1">
-                  <TransactionRecordList index="1" />
+                  <TransactionRecordList />
                 </TabPane>
                 <TabPane forceRender tab="豁免利息" key="2">
-                  <TransactionRecordList index="2" />
+                  2
                 </TabPane>
                 <TabPane forceRender tab="預期利息記錄" key="3">
-                  <TransactionRecordList index="3" />
+                  3
                 </TabPane>
                 <TabPane forceRender tab="已出帳單" key="4">
-                  <TransactionRecordList index="4" />
+                  4
                 </TabPane>
                 <TabPane forceRender tab="逾期天數計算表" key="5">
-                  <TransactionRecordList index="5" />
+                  5
                 </TabPane>
                 <TabPane forceRender tab="優惠卷清單" key="6">
-                  <TransactionRecordList index="6" />
+                  6
                 </TabPane>
               </MyTab>
             </Col>

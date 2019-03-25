@@ -38,63 +38,59 @@ class TransactionRecordList extends Component {
   }
 
   render() {
-    const { index } = this.props
     const { visible, loading } = this.state
-    let myButton = null
-    if (index === '1') {
-      myButton = (
-        <div>
-          <Button
-            htmlType="submit"
-            loading={loading}
-            onClick={this.refreshContent}
-          >
-            刷新
-          </Button>
-          <Button
-            type="primary"
-            style={{ marginLeft: 8 }}
-            htmlType="submit"
-            onClick={this.showModal}
-          >
-            還款
-          </Button>
-          <Button style={{ marginLeft: 8 }} htmlType="submit">
-            撤销还款
-          </Button>
-          <Button style={{ marginLeft: 8 }} htmlType="submit">
-            超额还款
-          </Button>
-          <Button style={{ marginLeft: 8 }} htmlType="submit">
-            申请冻结
-          </Button>
-          <Button style={{ marginLeft: 8 }} htmlType="submit">
-            正常还款
-          </Button>
-          <Modal
-            visible={visible}
-            title="新增AdmiFee"
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
-            footer={[
-              <Button key="back" onClick={this.handleCancel}>
-                取消
-              </Button>,
-              <Button
-                key="submit"
-                type="primary"
-                loading={loading}
-                onClick={this.handleOk}
-              >
-                提交
-              </Button>
-            ]}
-          >
-            <AdminFeeRepayment />
-          </Modal>
-        </div>
-      )
-    }
+    let myButton = (
+      <div>
+        <Button
+          htmlType="submit"
+          loading={loading}
+          onClick={this.refreshContent}
+        >
+          刷新
+        </Button>
+        <Button
+          type="primary"
+          style={{ marginLeft: 8 }}
+          htmlType="submit"
+          onClick={this.showModal}
+        >
+          還款
+        </Button>
+        <Button style={{ marginLeft: 8 }} htmlType="submit">
+          撤销还款
+        </Button>
+        <Button style={{ marginLeft: 8 }} htmlType="submit">
+          超额还款
+        </Button>
+        <Button style={{ marginLeft: 8 }} htmlType="submit">
+          申请冻结
+        </Button>
+        <Button style={{ marginLeft: 8 }} htmlType="submit">
+          正常还款
+        </Button>
+        <Modal
+          visible={visible}
+          title="新增AdmiFee"
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button key="back" onClick={this.handleCancel}>
+              取消
+            </Button>,
+            <Button
+              key="submit"
+              type="primary"
+              loading={loading}
+              onClick={this.handleOk}
+            >
+              提交
+            </Button>
+          ]}
+        >
+          <AdminFeeRepayment />
+        </Modal>
+      </div>
+    )
     return (
       <div>
         {myButton}
@@ -103,6 +99,7 @@ class TransactionRecordList extends Component {
           scroll={{ x: 1300, y: '100%' }}
           multiSelect
           // pagination
+          index={2}
           columns={[
             {
               title: '處理日期',

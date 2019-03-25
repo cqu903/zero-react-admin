@@ -1,38 +1,13 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { Table } from 'antd'
-// import { actionCreators } from './store'
-// import store from '../../store'
+import { actionCreators } from './store'
+import store from '../../store'
 import { withRouter } from 'react-router-dom'
-import http from 'utils/http'
 
 class ZeroList extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      dataList: null
-    }
-  }
-
-  componentWillMount = () => {
-    this.fetchDataList()
-  }
-
   componentDidMount() {
-    if (this.props.onRef) {
-      this.props.onRef(this)
-    }
-    // this.props.initProps(this.props)
-
-    // if (this.props.forceRefresh) {
-    //   this.refreshComponent()
-    // }
-  }
-
-  componentWillUnmount() {
-    if (this.props.onRef) {
-      this.props.onRef(undefined)
-    }
+    this.props.initProps(this.props)
   }
 
   /**
@@ -40,23 +15,9 @@ class ZeroList extends Component {
    * see: https://github.com/kriasoft/react-starter-kit/issues/909
    */
   refreshComponent() {
-    this.fetchDataList()
     // this.forceUpdate();
-    // if (this.props.dataUrl) {
-    // store.dispatch(actionCreators.initDataList(this.props.dataUrl))
-    // }
-  }
-
-  fetchDataList = () => {
     if (this.props.dataUrl) {
-      http.get(this.props.dataUrl).then(data => {
-        // console.info("data.rows--->" + data.rows ? data.rows : data)
-        this.setState({
-          dataList: data.rows ? data.rows : data
-        })
-      }).catch(err => {
-        console.info(err)
-      })
+      store.dispatch(actionCreators.initDataList(this.props.dataUrl))
     }
   }
 
@@ -64,36 +25,40 @@ class ZeroList extends Component {
     pagination: false
   }
   render() {
-    console.info('refresh...')
+    console.info('index...' + this.props.index)
+    console.info('dataList...' + this.props.dataList[this.props.index])
     return (
       <div>
         <Table
           scroll={this.props.scroll}
           rowKey="id"
-          dataSource={this.state.dataList}
+          dataSource={this.props.dataList[this.props.index]}
           columns={this.props.columns}
           pagination={this.props.pagination}
           onRow={record => {
             return {
               onClick: event => {
-                this.props.handleRowClick && this.props.handleRowClick(event, record)
+                this.props.handleRowClick &&
+                  this.props.handleRowClick(event, record)
               },
               onDoubleClick: event => {
-                this.props.handleRowDoubleClick && this.props.handleRowDoubleClick(event, record)
+                this.props.handleRowDoubleClick &&
+                  this.props.handleRowDoubleClick(event, record)
               },
-              onContextMenu: event => { },
-              onMouseEnter: event => { },
-              onMouseLeave: event => { }
+              onContextMenu: event => {},
+              onMouseEnter: event => {},
+              onMouseLeave: event => {}
             }
           }}
           rowClassName={record => {
             let isSelectedRow = false
-            this.props.selectedRows && this.props.selectedRows.forEach((row, index) => {
-              if (row.id === record.id) {
-                isSelectedRow = true
-                return false
-              }
-            })
+            this.props.selectedRows &&
+              this.props.selectedRows.forEach((row, index) => {
+                if (row.id === record.id) {
+                  isSelectedRow = true
+                  return false
+                }
+              })
             return isSelectedRow ? 'selectedRow' : null
           }}
         />
@@ -108,8 +73,9 @@ class ZeroList extends Component {
     )
   }
 }
-/* const mapState = state => ({
+const mapState = state => ({
   selectedRows: state.zeroList.selectedRows,
+  // index: state.zeroList.index,
   dataList: state.zeroList.dataList
 })
 const mapDispatch = dispatch => {
@@ -122,9 +88,12 @@ const mapDispatch = dispatch => {
         dispatch(actionCreators.initMultiSelect(props.multiSelect))
       }
       if (props.dataUrl) {
-        dispatch(actionCreators.initDataList(props.dataUrl))
+        dispatch(actionCreators.initDataList(props.dataUrl, props.index))
       }
     }
   }
-} */
-export default withRouter(ZeroList)
+}
+export default connect(
+  mapState,
+  mapDispatch
+)(withRouter(ZeroList))

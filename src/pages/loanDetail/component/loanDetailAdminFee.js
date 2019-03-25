@@ -94,6 +94,7 @@ class LoanDetailAdminFee extends Component {
               onRef={ref => (this.child = ref)}
               multiSelect
               // pagination
+              index={1}
               columns={[
                 {
                   title: '貸款生效日期',
