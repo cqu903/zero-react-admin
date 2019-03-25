@@ -13,22 +13,22 @@ export const initMultiSelect = multiSelect => ({
     multiSelect
   }
 })
-export const initDataList = (dataUrl, index) => {
+export const initDataList = (dataUrl, uuid) => {
   return dispatch => {
     http
       .get(dataUrl)
       .then(data => {
-        dispatch(initList(data.rows ? data.rows : data, index))
+        dispatch(initList(data.rows ? data.rows : data, uuid))
       })
       .catch(err => {
         console.info(err)
       })
   }
 }
-const initList = (list, index) => ({
+const initList = (list, uuid) => ({
   type: actionTypes.INIT_LIST,
   payload: {
     list,
-    index
+    uuid
   }
 })

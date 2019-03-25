@@ -4,21 +4,15 @@ import { Table } from 'antd'
 import { actionCreators } from './store'
 import store from '../../store'
 import { withRouter } from 'react-router-dom'
+import uuidv4 from 'uuid/v4'
 
 class ZeroList extends Component {
-  componentDidMount() {
-    this.props.initProps(this.props)
+  constructor(props) {
+    super(props)
+    this.uuid = uuidv4()
   }
-
-  /**
-   * see: https://www.jianshu.com/p/ff1420118918
-   * see: https://github.com/kriasoft/react-starter-kit/issues/909
-   */
-  refreshComponent() {
-    // this.forceUpdate();
-    if (this.props.dataUrl) {
-      store.dispatch(actionCreators.initDataList(this.props.dataUrl))
-    }
+  componentDidMount() {
+    this.props.initProps(this.props, this.uuid)
   }
 
   static defaultProps = {
@@ -32,7 +26,7 @@ class ZeroList extends Component {
         <Table
           scroll={this.props.scroll}
           rowKey="id"
-          dataSource={this.props.dataList[this.props.index]}
+          dataSource={this.props.dataList[this.uuid]}
           columns={this.props.columns}
           pagination={this.props.pagination}
           onRow={record => {
@@ -83,12 +77,12 @@ const mapDispatch = dispatch => {
     handleRowClick(event, record) {
       dispatch(actionCreators.addOrRemoveSelectRows(record))
     },
-    initProps(props) {
+    initProps(props, uuid) {
       if (props.multiSelect) {
         dispatch(actionCreators.initMultiSelect(props.multiSelect))
       }
       if (props.dataUrl) {
-        dispatch(actionCreators.initDataList(props.dataUrl, props.index))
+        dispatch(actionCreators.initDataList(props.dataUrl, uuid))
       }
     }
   }

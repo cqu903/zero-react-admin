@@ -3,18 +3,18 @@ import { Modal, Button, Row, Col } from 'antd'
 import ZeroList from 'business/zeroList'
 import { SplitLineCol } from '../style'
 import AdminFeeRepayment from './adminFeeRepayment'
-
-import RefreshComponent from 'business/zeroList/RefreshComponent'
+import uuidv4 from 'uuid/v4'
+import PubSub from 'pubsub-js'
+import { TOPIC_ADMINFEE, TOPIC_TRANSACTION_LIST } from 'pages/constant/PubSub'
 
 class LoanDetailAdminFee extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: false,
-      visible: false
+      visible: false,
+      key: uuidv4()
     }
-    this.adminFeeUrl = '/api/loanAccount/getAdminFree'
-    this.adminFeeIndex = 1
   }
 
   showModal = () => {
@@ -35,8 +35,9 @@ class LoanDetailAdminFee extends Component {
 
   refreshContent = () => {
     this.setState({ loading: true })
+    PubSub.publish(TOPIC_ADMINFEE)
+    PubSub.publish(TOPIC_TRANSACTION_LIST)
     // this.child.refreshComponent()
-    RefreshComponent.refresh(this.adminFeeUrl, this.adminFeeIndex)
     // store.dispatch(
     //   actionCreators.initDataList(this.adminFeeUrl, this.adminFeeIndex)
     // )
@@ -46,6 +47,19 @@ class LoanDetailAdminFee extends Component {
   handleCancel = () => {
     this.setState({ visible: false })
   }
+
+  componentDidMount() {
+    this.token = PubSub.subscribe(TOPIC_ADMINFEE, () => {
+      this.setState({
+        key: uuidv4()
+      })
+    })
+  }
+
+  componentWillUnmount() {
+    PubSub.unsubscribe(this.token)
+  }
+
   render() {
     const { visible, loading } = this.state
     return (
@@ -99,10 +113,10 @@ class LoanDetailAdminFee extends Component {
         <Row>
           <Col>
             <ZeroList
-              onRef={ref => (this.child = ref)}
+              // onRef={ref => (this.child = ref)}
+              key={this.state.key}
               multiSelect
               // pagination
-              index={this.adminFeeIndex}
               columns={[
                 {
                   title: '貸款生效日期',
@@ -137,10 +151,9 @@ class LoanDetailAdminFee extends Component {
                   dataIndex: 'accountStatus'
                 }
               ]}
-              dataUrl={this.adminFeeUrl}
+              dataUrl="/api/loanAccount/getAdminFree"
               handleRowDoubleClick={(event, record) => {}}
             />
-            /
           </Col>
         </Row>
       </Fragment>

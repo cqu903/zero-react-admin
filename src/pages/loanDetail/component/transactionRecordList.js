@@ -3,18 +3,19 @@ import { withRouter } from 'react-router-dom'
 import ZeroList from '../../../business/zeroList'
 import { Form, Modal, Button } from 'antd'
 import AdminFeeRepayment from './adminFeeRepayment'
-
-import RefreshComponent from 'business/zeroList/RefreshComponent'
+import uuidv4 from 'uuid/v4'
+import PubSub from 'pubsub-js'
+import { TOPIC_TRANSACTION_LIST } from 'pages/constant/PubSub'
 
 class TransactionRecordList extends Component {
   constructor(props) {
     super(props)
+    this.token = ''
     this.state = {
       loading: false,
-      visible: false
+      visible: false,
+      key: uuidv4()
     }
-    this.url = '/api/transaction/queryTransactionRecordList'
-    this.index = 2
   }
 
   showModal = () => {
@@ -31,28 +32,39 @@ class TransactionRecordList extends Component {
     }, 100)
   }
 
-  refreshContent = () => {
-    this.setState({ loading: true })
-    // this.child.refreshComponent()
-    RefreshComponent.refresh(this.url, this.index)
-    this.setState({ loading: false })
-  }
+  // refreshContent = () => {
+  //   this.setState({ loading: true })
+  //   // this.child.refreshComponent()
+  //   this.setState({ loading: false })
+  // }
 
   handleCancel = () => {
     this.setState({ visible: false })
+  }
+
+  componentDidMount() {
+    this.token = PubSub.subscribe(TOPIC_TRANSACTION_LIST, () => {
+      this.setState({
+        key: uuidv4()
+      })
+    })
+  }
+
+  componentWillUnmount() {
+    PubSub.unsubscribe(this.token)
   }
 
   render() {
     const { visible, loading } = this.state
     let myButton = (
       <div>
-        <Button
+        {/* <Button
           htmlType="submit"
           loading={loading}
           onClick={this.refreshContent}
         >
           刷新
-        </Button>
+        </Button> */}
         <Button
           type="primary"
           style={{ marginLeft: 8 }}
@@ -100,11 +112,11 @@ class TransactionRecordList extends Component {
       <div>
         {myButton}
         <ZeroList
+          key={this.state.key}
           // onRef={ref => (this.child = ref)}
           scroll={{ x: 1300, y: '100%' }}
           multiSelect
           // pagination
-          index={this.index}
           columns={[
             {
               title: '處理日期',
@@ -179,7 +191,7 @@ class TransactionRecordList extends Component {
               fixed: 'right'
             }
           ]}
-          dataUrl={this.url}
+          dataUrl="/api/transaction/queryTransactionRecordList"
           handleRowDoubleClick={(event, record) => {}}
         />
       </div>

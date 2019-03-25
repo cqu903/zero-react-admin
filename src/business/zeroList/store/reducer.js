@@ -4,16 +4,14 @@ const defaultState = {
   multiSelect: false,
   selectedRows: [],
   dataList: {}
-  //   index: 0
 }
 
 export default (state = defaultState, action) => {
   let newState = JSON.parse(JSON.stringify(state))
   switch (action.type) {
     case actionTypes.INIT_LIST:
-      const { list, index } = action.payload
-      //   newState.index = index
-      newState.dataList[index] = list
+      const { list, uuid } = action.payload
+      newState.dataList[uuid] = list
       return newState
     case actionTypes.INIT_MULTI_SELECT:
       const { multiSelect } = action.payload
