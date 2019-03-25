@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import ZeroList from '../../business/zeroList'
+import ZeroList from '../../../business/zeroList'
 import { Form, Modal, Button } from 'antd'
-import AdminFeeRepayment from './component/adminFeeRepayment'
+import AdminFeeRepayment from './adminFeeRepayment'
 
 class TransactionRecordList extends Component {
   constructor(props) {

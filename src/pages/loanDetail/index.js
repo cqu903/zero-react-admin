@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import MyTab from '../../business/myTab'
 import { Tabs } from 'antd'
-import LoanAccountDetail from '../../pages/loanDetail/loanAccountDetail'
+import LoanAccountDetail from './component/loanAccountDetail'
 
 const TabPane = Tabs.TabPane
 

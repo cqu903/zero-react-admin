@@ -45,7 +45,6 @@ class MyTab extends Component {
         onChange={this.onChange}
         activeKey={this.state.activeKey}
         type="card"
-      // onEdit={this.onEdit}
       >
         {this.props.children}
       </Tabs>
