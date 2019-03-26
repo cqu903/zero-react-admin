@@ -25,24 +25,15 @@ class LoanDetailAdminFee extends Component {
 
   handleOk = () => {
     this.setState({ loading: true })
-    setTimeout(() => {
-      this.setState({ loading: false, visible: false })
-      // refresh route
-      // this.props.history.push(this.props.location.pathname + '?date=' + new Date().getTime())
-      // window.location.reload()
-      PubSub.publish(TOPIC_ADMINFEE)
-      PubSub.publish(TOPIC_TRANSACTION_LIST)
-    }, 100)
+    PubSub.publish(TOPIC_ADMINFEE)
+    PubSub.publish(TOPIC_TRANSACTION_LIST)
+    this.setState({ loading: false, visible: false })
   }
 
   refreshContent = () => {
     this.setState({ loading: true })
     PubSub.publish(TOPIC_ADMINFEE)
     PubSub.publish(TOPIC_TRANSACTION_LIST)
-    // this.child.refreshComponent()
-    // store.dispatch(
-    //   actionCreators.initDataList(this.adminFeeUrl, this.adminFeeIndex)
-    // )
     this.setState({ loading: false })
   }
 

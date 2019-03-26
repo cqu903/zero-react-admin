@@ -95,7 +95,7 @@ class Header extends Component {
               unCheckedChildren="Light"
             />
           </Col>
-          <Col span={7} />
+          <Col span={9} />
           <Col span={4}>
             {this.state.loginName}( {this.state.trueName} )，欢迎您！
           </Col>
