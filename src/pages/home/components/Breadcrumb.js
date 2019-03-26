@@ -56,6 +56,7 @@ class Breadcrumb extends PureComponent {
             finded = true
           }
         }
+        return ''
       })
     } else {
       console.error('route或extra没有配置name属性')

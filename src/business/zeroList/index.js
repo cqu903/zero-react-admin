@@ -66,7 +66,6 @@ class ZeroList extends Component {
     pagination: false
   }
   render() {
-    console.info('refresh...')
     return (
       <div>
         <Table
@@ -104,10 +103,10 @@ class ZeroList extends Component {
         />
         <style>
           {`
-                        .selectedRow {
-                            background-color: #E9F7FE;
-                        }
-                    `}
+              .selectedRow {
+                  background-color: #E9F7FE;
+              }
+          `}
         </style>
       </div>
     )
