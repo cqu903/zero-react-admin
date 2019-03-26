@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Table } from 'antd'
 import { actionCreators } from './store'
-import store from '../../store'
 import { withRouter } from 'react-router-dom'
 import uuidv4 from 'uuid/v4'
 

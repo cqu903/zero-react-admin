@@ -5,7 +5,7 @@ import { SplitLineCol } from '../style'
 import AdminFeeRepayment from './adminFeeRepayment'
 import uuidv4 from 'uuid/v4'
 import PubSub from 'pubsub-js'
-import { TOPIC_ADMINFEE, TOPIC_TRANSACTION_LIST } from 'pages/constant/PubSub'
+import { TOPIC_ADMINFEE, TOPIC_TRANSACTION_LIST } from 'pages/constant/pubSub'
 
 class LoanDetailAdminFee extends Component {
   constructor(props) {
@@ -29,7 +29,9 @@ class LoanDetailAdminFee extends Component {
       this.setState({ loading: false, visible: false })
       // refresh route
       // this.props.history.push(this.props.location.pathname + '?date=' + new Date().getTime())
-      window.location.reload()
+      // window.location.reload()
+      PubSub.publish(TOPIC_ADMINFEE)
+      PubSub.publish(TOPIC_TRANSACTION_LIST)
     }, 100)
   }
 

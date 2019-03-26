@@ -5,7 +5,7 @@ import { Form, Modal, Button } from 'antd'
 import AdminFeeRepayment from './adminFeeRepayment'
 import uuidv4 from 'uuid/v4'
 import PubSub from 'pubsub-js'
-import { TOPIC_TRANSACTION_LIST } from 'pages/constant/PubSub'
+import { TOPIC_TRANSACTION_LIST } from 'pages/constant/pubSub'
 
 class TransactionRecordList extends Component {
   constructor(props) {
