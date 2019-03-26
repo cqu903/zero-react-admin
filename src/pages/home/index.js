@@ -11,8 +11,12 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.toggle = this.toggle.bind(this)
+    let defaultTheme = localStorage.getItem('defaultTheme')
+    defaultTheme = defaultTheme !== '' ? defaultTheme : 'dark'
+
     this.state = {
-      collapsed: false
+      collapsed: false,
+      theme: defaultTheme
     }
   }
   componentDidMount() {
@@ -23,6 +27,14 @@ class Home extends Component {
     this.setState({
       collapsed: !this.state.collapsed
     })
+  }
+
+  changeTheme = value => {
+    let theme = value ? 'dark' : 'light'
+    this.setState({
+      theme: theme
+    })
+    localStorage.setItem('defaultTheme', theme)
   }
 
   getCompoment = path => {
@@ -78,15 +90,20 @@ class Home extends Component {
             collapsible
             collapsed={collapsed}
             width={240}
-            style={{ minHeight: 1500 }}
+            style={{
+              background: this.state.theme === 'dark' ? '#001529' : '#fff',
+              minHeight: 1500
+            }}
           >
-            <Sider />
+            <Sider theme={this.state.theme} />
           </Layout.Sider>
           <Layout>
             <Layout.Header style={{ background: '#fff', padding: 0 }}>
               <Header
                 collapsed={this.state.collapsed}
                 onClick={this.toggle}
+                theme={this.state.theme}
+                changeTheme={this.changeTheme}
                 routes={routes}
               />
             </Layout.Header>

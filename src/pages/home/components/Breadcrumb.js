@@ -58,8 +58,6 @@ class Breadcrumb extends PureComponent {
         }
         return ''
       })
-    } else {
-      console.error('route或extra没有配置name属性')
     }
   }
   renderPath() {

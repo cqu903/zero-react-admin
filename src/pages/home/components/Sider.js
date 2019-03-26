@@ -7,6 +7,14 @@ import { Logo } from '../style'
 import * as routerMapping from '../../router'
 
 class Sider extends PureComponent {
+  constructor(props) {
+    super(props)
+
+    this.rootSubmenuKeys = []
+    this.state = {
+      openKeys: []
+    }
+  }
   componentDidMount() {
     // this.props.loadMenuData()
     // this.props.loadRouter()
@@ -19,7 +27,20 @@ class Sider extends PureComponent {
         return icon.type
       }
     }
-    return ""
+    return ''
+  }
+
+  onOpenChange = openKeys => {
+    const latestOpenKey = openKeys.find(
+      key => this.state.openKeys.indexOf(key) === -1
+    )
+    if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      this.setState({ openKeys })
+    } else {
+      this.setState({
+        openKeys: latestOpenKey ? [latestOpenKey] : []
+      })
+    }
   }
 
   render() {
@@ -33,16 +54,19 @@ class Sider extends PureComponent {
 
         <Menu
           mode="inline"
-          theme="dark"
+          theme={this.props.theme}
+          openKeys={this.state.openKeys}
+          onOpenChange={this.onOpenChange}
           // inlineIndent={20}
           inlineCollapsed={collapsed}
         >
           {menuData.map(item => {
-            let icon = null;
+            let icon = null
             const iconType = this.getIcon(item.id)
             if (iconType !== '') {
               icon = <Icon type={iconType} />
             }
+            this.rootSubmenuKeys.push(item.id)
             return (
               <SubMenu
                 key={item.id}
@@ -56,30 +80,33 @@ class Sider extends PureComponent {
                 {item.children.map(menuItem => {
                   if (Array.isArray(menuItem.children)) {
                     // has thrid menu
-                    let icon = null;
+                    let icon = null
                     const iconType = this.getIcon(menuItem.id)
                     if (iconType !== '') {
                       icon = <Icon type={iconType} />
                     }
                     return (
-                      <SubMenu key={menuItem.id} title={
-                        <span>
-                          {icon}
-                          <span>{menuItem.text}</span>
-                        </span>
-                      }>
+                      <SubMenu
+                        key={menuItem.id}
+                        title={
+                          <span>
+                            {icon}
+                            <span>{menuItem.text}</span>
+                          </span>
+                        }
+                      >
                         {menuItem.children.map(subMenuItem => {
                           // console.info('subMenuItem', subMenuItem.text)
                           return (
                             <Menu.Item key={subMenuItem.id}>
                               {subMenuItem.url !== null &&
-                                subMenuItem.url !== '' ? (
-                                  <Link to={subMenuItem.url} key={subMenuItem.id}>
-                                    {subMenuItem.text}
-                                  </Link>
-                                ) : (
-                                  <span>{subMenuItem.text}</span>
-                                )}
+                              subMenuItem.url !== '' ? (
+                                <Link to={subMenuItem.url} key={subMenuItem.id}>
+                                  {subMenuItem.text}
+                                </Link>
+                              ) : (
+                                <span>{subMenuItem.text}</span>
+                              )}
                             </Menu.Item>
                           )
                         })}
@@ -94,8 +121,8 @@ class Sider extends PureComponent {
                             {menuItem.text}
                           </Link>
                         ) : (
-                            <span>{item.text}</span>
-                          )}
+                          <span>{item.text}</span>
+                        )}
                       </Menu.Item>
                     )
                   }

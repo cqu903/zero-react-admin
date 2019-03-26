@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Badge, Icon, Dropdown, Menu, Modal } from 'antd'
+import { Row, Col, Badge, Icon, Dropdown, Menu, Modal, Switch } from 'antd'
 import Breadcrumb from './Breadcrumb'
 // import routes from '../../routerMapping'
 import { connect } from 'react-redux'
@@ -57,7 +57,7 @@ class Header extends Component {
           }
         }).catch(() => console.log('Oops errors!'))
       },
-      onCancel() { }
+      onCancel() {}
     })
   }
 
@@ -84,10 +84,18 @@ class Header extends Component {
               onClick={toggle}
             />
           </Col>
-          <Col span={6}>
+          <Col span={4}>
             <Breadcrumb routes={this.props.routes} />
           </Col>
-          <Col span={8} />
+          <Col span={1}>
+            <Switch
+              checked={this.props.theme === 'dark'}
+              onChange={this.props.changeTheme}
+              checkedChildren="Dark"
+              unCheckedChildren="Light"
+            />
+          </Col>
+          <Col span={7} />
           <Col span={4}>
             {this.state.loginName}( {this.state.trueName} )，欢迎您！
           </Col>
