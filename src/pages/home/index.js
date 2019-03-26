@@ -89,9 +89,9 @@ class Home extends Component {
             trigger={null}
             collapsible
             collapsed={collapsed}
-            width={240}
+            width={200}
             style={{
-              background: this.state.theme === 'dark' ? '#001529' : '#fff',
+              background: this.state.theme === 'dark' ? '#002140' : '#fff',
               minHeight: 1500
             }}
           >

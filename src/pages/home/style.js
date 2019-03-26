@@ -29,22 +29,26 @@ export const Logo = styled.div`
     height: 64px;
     overflow: hidden;
     line-height: 64px;
-    background: #002140;
+    // background: #002140;
     background-repeat: no-repeat;
     // 折叠样式
-    ${props => props.collapsed && css`
-      background-image: url(${logoImg1});
-      background-size: 25px 40px;
-      background-position: 30px;
-      color: #fff;
-      font-size: 20px;
-    `}
+    ${props =>
+      props.collapsed &&
+      css`
+        background-image: url(${logoImg1});
+        background-size: 25px 40px;
+        background-position: 30px;
+        color: #fff;
+        font-size: 20px;
+      `}
     // 展开样式
-    ${props => !props.collapsed && css`
-      background-image: url(${logoImg});
-      background-size: 150px;
-      background-position: center center;
-    `}
+    ${props =>
+      !props.collapsed &&
+      css`
+        background-image: url(${logoImg});
+        background-size: 150px;
+        background-position: center center;
+      `}
 
 `
 
@@ -53,4 +57,3 @@ export const Logo = styled.div`
 //   height: '50px',
 //   width: '50px'
 // }));
-
