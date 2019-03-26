@@ -6,7 +6,7 @@ import { SearchWrapper } from './style'
 
 class LoanList extends Component {
   onShowSizeChange = (current, pageSize) => {
-    console.log(current, pageSize);
+    console.log(current, pageSize)
   }
   render() {
     return (
@@ -81,7 +81,8 @@ class LoanList extends Component {
               showSizeChanger
               onShowSizeChange={this.onShowSizeChange}
               defaultCurrent={1}
-              total={100} />
+              total={100}
+            />
           </Col>
         </Row>
       </Fragment>

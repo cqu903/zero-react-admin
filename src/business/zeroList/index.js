@@ -1,36 +1,84 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { Table } from 'antd'
-import { actionCreators } from './store'
+// import { actionCreators } from './store'
+// import store from '../../store'
 import { withRouter } from 'react-router-dom'
-import uuidv4 from 'uuid/v4'
+import http from 'utils/http'
 
 class ZeroList extends Component {
   constructor(props) {
     super(props)
-    this.uuid = uuidv4()
+    this.state = {
+      dataList: null,
+      selectedRows: []
+    }
   }
-  componentDidMount() {
-    this.props.initProps(this.props, this.uuid)
+
+  componentWillMount = () => {
+    this.fetchDataList()
+  }
+
+  fetchDataList = () => {
+    if (this.props.dataUrl) {
+      http
+        .get(this.props.dataUrl)
+        .then(data => {
+          // console.info("data.rows--->" + data.rows ? data.rows : data)
+          this.setState({
+            dataList: data.rows ? data.rows : data
+          })
+        })
+        .catch(err => {
+          console.info(err)
+        })
+    }
+  }
+
+  addOrRemoveSelectRows = record => {
+    let findIndex = -1
+    this.state.selectedRows.forEach((item, index) => {
+      if (item.id === record.id) {
+        findIndex = index
+        this.state.selectedRows.splice(findIndex, 1)
+        this.setState({
+          selectedRows: this.state.selectedRows
+        })
+        return false
+      }
+    })
+    if (findIndex < 0) {
+      if (this.props.multiSelect) {
+        let arr = this.state.selectedRows
+        arr.push(record)
+        this.setState({
+          selectedRows: arr
+        })
+      } else {
+        this.setState({
+          selectedRows: [record]
+        })
+      }
+    }
   }
 
   static defaultProps = {
     pagination: false
   }
   render() {
-    // console.info('index...' + this.props.index)
-    // console.info('dataList...' + this.props.dataList[this.props.index])
+    console.info('refresh...')
     return (
       <div>
         <Table
           scroll={this.props.scroll}
           rowKey="id"
-          dataSource={this.props.dataList[this.uuid]}
+          dataSource={this.state.dataList}
           columns={this.props.columns}
           pagination={this.props.pagination}
           onRow={record => {
             return {
               onClick: event => {
+                this.addOrRemoveSelectRows(record)
                 this.props.handleRowClick &&
                   this.props.handleRowClick(event, record)
               },
@@ -45,13 +93,12 @@ class ZeroList extends Component {
           }}
           rowClassName={record => {
             let isSelectedRow = false
-            this.props.selectedRows &&
-              this.props.selectedRows.forEach((row, index) => {
-                if (row.id === record.id) {
-                  isSelectedRow = true
-                  return false
-                }
-              })
+            this.state.selectedRows.forEach((row, index) => {
+              if (row.id === record.id) {
+                isSelectedRow = true
+                return false
+              }
+            })
             return isSelectedRow ? 'selectedRow' : null
           }}
         />
@@ -66,9 +113,8 @@ class ZeroList extends Component {
     )
   }
 }
-const mapState = state => ({
+/* const mapState = state => ({
   selectedRows: state.zeroList.selectedRows,
-  // index: state.zeroList.index,
   dataList: state.zeroList.dataList
 })
 const mapDispatch = dispatch => {
@@ -76,17 +122,14 @@ const mapDispatch = dispatch => {
     handleRowClick(event, record) {
       dispatch(actionCreators.addOrRemoveSelectRows(record))
     },
-    initProps(props, uuid) {
+    initProps(props) {
       if (props.multiSelect) {
         dispatch(actionCreators.initMultiSelect(props.multiSelect))
       }
       if (props.dataUrl) {
-        dispatch(actionCreators.initDataList(props.dataUrl, uuid))
+        dispatch(actionCreators.initDataList(props.dataUrl))
       }
     }
   }
-}
-export default connect(
-  mapState,
-  mapDispatch
-)(withRouter(ZeroList))
+} */
+export default withRouter(ZeroList)
