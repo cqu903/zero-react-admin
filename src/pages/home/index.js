@@ -12,7 +12,7 @@ class Home extends Component {
     super(props)
     this.toggle = this.toggle.bind(this)
     let defaultTheme = localStorage.getItem('defaultTheme')
-    defaultTheme = defaultTheme !== '' ? defaultTheme : 'dark'
+    defaultTheme = defaultTheme === null ? 'dark' : defaultTheme
 
     this.state = {
       collapsed: false,
