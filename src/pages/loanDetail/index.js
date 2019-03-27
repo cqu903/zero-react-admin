@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import MyTab from '../../business/myTab'
+import MyTab from '../../common/business/myTab'
 import { Tabs } from 'antd'
 import LoanAccountDetail from './component/loanAccountDetail'
 

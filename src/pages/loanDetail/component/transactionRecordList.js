@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import ZeroList from '../../../business/zeroList'
+import ZeroList from '../../../common/business/zeroList'
 import { Form, Modal, Button } from 'antd'
 import AdminFeeRepayment from './adminFeeRepayment'
 import uuidv4 from 'uuid/v4'

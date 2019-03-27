@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Modal, Button, Row, Col } from 'antd'
-import ZeroList from 'business/zeroList'
+import ZeroList from 'common/business/zeroList'
 import { SplitLineCol } from '../style'
 import AdminFeeRepayment from './adminFeeRepayment'
 import uuidv4 from 'uuid/v4'

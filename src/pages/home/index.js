@@ -23,7 +23,7 @@ class Home extends Component {
   componentDidMount() {
     this.props.loadMenuData()
     this.setState({
-      minHeight: window.screen.availHeight - 115
+      minHeight: window.screen.availHeight - 50
     })
   }
 
