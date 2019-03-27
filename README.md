@@ -48,38 +48,38 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ├── node_modules
 ├── public
 │   ├── api
-│   │   └── ... # api mock
-│   └── index.html # main entry
-├── commons  # Common
-│   ├── business # Common business related components
-│   │   ├── myTab # tab
-│   │   ├── zeroList # list
+│   │   └── ...                       // api mock
+│   └── index.html                    // main entry
+├── commons                           // Common
+│   ├── business                      // Common business related components
+│   │   ├── myTab                     // tab
+│   │   ├── zeroList                  // list
 │   │   └── ...
 │   ├── constant
-│   │   └── pubSub.js # publish and subscribe constant defined
+│   │   └── pubSub.js                 // publish and subscribe constant defined
 ├── config
-│   ├── development.js # development configuration
-│   ├── en.json # i18n file configuration: english
-│   └── zh.json # i18n file configuration: chinese
+│   ├── development.js                // development configuration
+│   ├── en.json                       // i18n file configuration: english
+│   └── zh.json                       // i18n file configuration: chinese
 ├── pages
-│   ├── home # Home page
-│   │   ├── index.js # entry
-│   │   ├── style.js # style component
-│   │   ├── components # page component
+│   ├── home                          // Home page
+│   │   ├── index.js                  // entry
+│   │   ├── style.js                  // style component
+│   │   ├── components                // page component
 │   │   ├── store # redux
-│   │       ├── actionCreators.js # action
-│   │       ├── actionTypes.js # action constant defined
-│   │       ├── index.js # redux entry
-│   │       └── reducer.js # reducer
+│   │       ├── actionCreators.js     // action
+│   │       ├── actionTypes.js        // action constant defined
+│   │       ├── index.js              // redux entry
+│   │       └── reducer.js            //  reducer
 │   ├── ...
-│   └── router.js # router entry
-├── statics # static file, usually image files
+│   └── router.js                     // router entry
+├── statics                           // static file, usually image files
 ├── store
 │   ├── index.js
-│   └── reducer.js # It can define different namespace reducer
-├── utils # Util tool
-│   └── http.js # axios
-├── App.js # Main component
-├── index.js # Main js entry
-└── style.js # Gloal style
+│   └── reducer.js                    // It can define different namespace reducer
+├── utils                             // Util tool
+│   └── http.js                       // axios
+├── App.js                            // Main component
+├── index.js                          // Main js entry
+└── style.js                          // Gloal style
 ```
