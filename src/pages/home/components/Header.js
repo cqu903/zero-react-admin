@@ -119,11 +119,11 @@ class Header extends Component {
           <Col span={4}>
             <Breadcrumb routes={this.props.routes} />
           </Col>
-          <Col span={8}>
+          <Col span={7}>
             {/* <FormattedMessage id="App.datePicker.title" />
             <DatePicker /> */}
           </Col>
-          <Col span={4}>
+          <Col span={5}>
             {this.state.loginName}( {this.state.trueName} )，欢迎您！
           </Col>
           <Col span={2}>

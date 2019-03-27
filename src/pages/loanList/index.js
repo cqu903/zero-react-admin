@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import ZeroList from '../../business/zeroList'
+import ZeroList from '../../common/business/zeroList'
 import { withRouter } from 'react-router-dom'
 import { Form, Button, Input, Row, Col, Pagination } from 'antd'
 import { SearchWrapper } from './style'

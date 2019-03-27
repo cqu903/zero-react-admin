@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Tabs, Row, Col } from 'antd'
-import MyTab from '../../../business/myTab'
+import MyTab from '../../../common/business/myTab'
 import TransactionRecordList from './transactionRecordList'
 import LoanDetailSummary from './loanDetailSummary'
 import LoanDetailInfo from './loanDetailInfo'
