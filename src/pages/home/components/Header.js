@@ -11,23 +11,36 @@ import { actionCreators as homeActionCreators } from '../store'
 import { MyIcon } from '../style'
 import http from 'utils/http'
 
+// import { FormattedMessage } from 'react-intl'
+// import { DatePicker } from 'antd'
+
 class Header extends Component {
   state = {
-    visible: false,
+    menuVisible: false,
+    langVisible: false,
     loginName: '',
     trueName: ''
   }
   handleMenuClick = e => {
     if (e.key === '2') {
-      this.setState({ visible: false })
+      this.setState({ menuVisible: false })
       console.log('logout...')
       this.showConfirm()
     }
   }
 
-  handleVisibleChange = flag => {
-    this.setState({ visible: flag })
-    console.log('handleVisibleChange...')
+  handleMenuVisibleChange = flag => {
+    this.setState({ menuVisible: flag })
+  }
+
+  handleLangClick = e => {
+    this.setState({ langVisible: false })
+    localStorage.setItem('defaultLang', e.key)
+    window.location.reload()
+  }
+
+  handleLangVisibleChange = flag => {
+    this.setState({ langVisible: flag })
   }
 
   componentWillMount = () => {
@@ -75,6 +88,12 @@ class Header extends Component {
         </Menu.Item>
       </Menu>
     )
+    const lang = (
+      <Menu onClick={this.handleLangClick}>
+        <Menu.Item key="zh-Hans-CN">CN 简体中文</Menu.Item>
+        <Menu.Item key="en-US">EN English</Menu.Item>
+      </Menu>
+    )
     return (
       <Fragment>
         <Row>
@@ -84,10 +103,7 @@ class Header extends Component {
               onClick={toggle}
             />
           </Col>
-          <Col span={4}>
-            <Breadcrumb routes={this.props.routes} />
-          </Col>
-          <Col span={1}>
+          <Col span={2}>
             <Switch
               checked={this.props.theme === 'dark'}
               onChange={this.props.changeTheme}
@@ -95,7 +111,13 @@ class Header extends Component {
               unCheckedChildren="Light"
             />
           </Col>
-          <Col span={9} />
+          <Col span={4}>
+            <Breadcrumb routes={this.props.routes} />
+          </Col>
+          <Col span={7}>
+            {/* 测试多语言<FormattedMessage id="App.datePicker.title" />
+            <DatePicker /> */}
+          </Col>
           <Col span={4}>
             {this.state.loginName}( {this.state.trueName} )，欢迎您！
           </Col>
@@ -108,14 +130,28 @@ class Header extends Component {
           </Col>
           <Col span={2}>
             <Dropdown
+              key={1}
               overlay={menu}
-              onVisibleChange={this.handleVisibleChange}
-              visible={this.state.visible}
+              onVisibleChange={this.handleMenuVisibleChange}
+              visible={this.state.menuVisible}
             >
               {/* eslint-disable-next-line */}
-              <a className="ant-dropdown-link" href="#">
+              <span className="ant-dropdown-link" style={{ cursor: 'pointer' }}>
                 控制面板 <Icon type="down" />
-              </a>
+              </span>
+            </Dropdown>
+          </Col>
+          <Col span={1}>
+            <Dropdown
+              key={2}
+              overlay={lang}
+              onVisibleChange={this.handleLangVisibleChange}
+              visible={this.state.langVisible}
+            >
+              {/* eslint-disable-next-line */}
+              <span className="ant-dropdown-link" style={{ cursor: 'pointer' }}>
+                <Icon type="global" />
+              </span>
             </Dropdown>
           </Col>
         </Row>

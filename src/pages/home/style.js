@@ -11,7 +11,7 @@ export const BreadcrumbWrapper = styled.div`
 export const MyIcon = styled(Icon)`
   font-size: 18px;
   line-height: 64px;
-  padding: 3px 10px;
+  padding: 5px 10px;
   cursor: pointer;
   transition: color 0.3s;
 
