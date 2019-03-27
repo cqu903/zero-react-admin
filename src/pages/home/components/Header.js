@@ -14,7 +14,7 @@ import http from 'utils/http'
 import { injectIntl } from 'react-intl'
 
 import PubSub from 'pubsub-js'
-import { SWITCH_LANGUAGE } from 'pages/constant/pubSub'
+import { SWITCH_LANGUAGE } from 'common/constant/pubSub'
 
 class Header extends Component {
   state = {
@@ -119,14 +119,14 @@ class Header extends Component {
           <Col span={4}>
             <Breadcrumb routes={this.props.routes} />
           </Col>
-          <Col span={7}>
+          <Col span={8}>
             {/* <FormattedMessage id="App.datePicker.title" />
             <DatePicker /> */}
           </Col>
           <Col span={4}>
             {this.state.loginName}( {this.state.trueName} )，欢迎您！
           </Col>
-          <Col span={3}>
+          <Col span={2}>
             <Badge count={5} offset={[10, 0]}>
               <Link to="/wait_process_list">
                 <span style={{ fontSize: '14px' }}>待办事项</span>

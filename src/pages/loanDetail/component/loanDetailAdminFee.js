@@ -5,7 +5,7 @@ import { SplitLineCol } from '../style'
 import AdminFeeRepayment from './adminFeeRepayment'
 import uuidv4 from 'uuid/v4'
 import PubSub from 'pubsub-js'
-import { TOPIC_ADMINFEE, TOPIC_TRANSACTION_LIST } from 'pages/constant/pubSub'
+import { TOPIC_ADMINFEE, TOPIC_TRANSACTION_LIST } from 'common/constant/pubSub'
 
 class LoanDetailAdminFee extends Component {
   constructor(props) {

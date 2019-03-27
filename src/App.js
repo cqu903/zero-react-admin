@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import 'antd/dist/antd.css'
 import uuidv4 from 'uuid/v4'
 import PubSub from 'pubsub-js'
-import { SWITCH_LANGUAGE } from 'pages/constant/pubSub'
+import { SWITCH_LANGUAGE } from 'common/constant/pubSub'
 
 import Home from './pages/home'
 
