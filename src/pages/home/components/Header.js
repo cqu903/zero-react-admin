@@ -11,8 +11,10 @@ import { actionCreators as homeActionCreators } from '../store'
 import { MyIcon } from '../style'
 import http from 'utils/http'
 
-// import { FormattedMessage } from 'react-intl'
-// import { DatePicker } from 'antd'
+import { injectIntl } from 'react-intl'
+
+import PubSub from 'pubsub-js'
+import { SWITCH_LANGUAGE } from 'pages/constant/pubSub'
 
 class Header extends Component {
   state = {
@@ -36,7 +38,10 @@ class Header extends Component {
   handleLangClick = e => {
     this.setState({ langVisible: false })
     localStorage.setItem('lang', e.key)
-    window.location.reload()
+    // window.location.reload()
+    PubSub.publish(SWITCH_LANGUAGE, e.item.children)
+    // const title = intl.formatMessage({ id: 'switch.language.title' })
+    // const content = intl.formatMessage({ id: 'switch.language.content' })
   }
 
   handleLangVisibleChange = flag => {
@@ -90,7 +95,7 @@ class Header extends Component {
     )
     const lang = (
       <Menu onClick={this.handleLangClick}>
-        <Menu.Item key="zh">CN 简体中文</Menu.Item>
+        <Menu.Item key="zh-cn">CN 简体中文</Menu.Item>
         <Menu.Item key="en">EN English</Menu.Item>
       </Menu>
     )
@@ -115,7 +120,7 @@ class Header extends Component {
             <Breadcrumb routes={this.props.routes} />
           </Col>
           <Col span={7}>
-            {/* 测试多语言<FormattedMessage id="App.datePicker.title" />
+            {/* <FormattedMessage id="App.datePicker.title" />
             <DatePicker /> */}
           </Col>
           <Col span={4}>
@@ -174,4 +179,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Header))
+)(withRouter(injectIntl(Header)))

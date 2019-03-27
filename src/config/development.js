@@ -7,7 +7,7 @@
 // export const DEV_BACKEND_SERVER_URL = ''
 
 // export const DEV_BACKEND_SERVER_URL = 'http://192.168.108.183:8300'
-// export const withCredentials = true
+// export const WITH_CREDENTIALS = true
 
 // yapi mock
 export const DEV_BACKEND_SERVER_URL = 'http://yapi.aeasycredit.net/mock/33'
