@@ -12,6 +12,12 @@ git clone https://github.com/cqu903/zero-react-admin my-app
 npm install -g yarn
 ```
 
+### initialize
+
+```bash
+yarn
+```
+
 ### development
 
 ```
