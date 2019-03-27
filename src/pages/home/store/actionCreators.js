@@ -1,27 +1,27 @@
 import * as actionTypes from './actionTypes'
-import axios from 'axios'
+// import axios from 'axios'
+import http from 'utils/http'
 
-const initMenuData = (data) => ({
-    type: actionTypes.INIT_MENU_DATA,
-    data
+const initMenuData = data => ({
+  type: actionTypes.INIT_MENU_DATA,
+  data
 })
-
 
 export const loadMenuData = () => {
-    return (dispatch) => {
-        axios.get('http://yapi.aeasycredit.net/mock/33/api/getMenu').then((res) => {
-            dispatch(initMenuData(res.data))
-        }).catch((err) => {
-            console.info(err)
-        })
-    }
+  return dispatch => {
+    http
+      .get('/api/getMenuLosJson')
+      .then(data => {
+        dispatch(initMenuData(data))
+      })
+      .catch(err => {
+        console.info(err)
+      })
+  }
 }
 
-export const addTab = (title, key, routeUrl) => ({
-    type: actionTypes.ADD_TAB,
-    data: {
-        title,
-        key,
-        routeUrl
-    }
-})
+// declared: sider toggle action function
+export const siderToggle = {
+  type: actionTypes.SIDER_TOGGLE,
+  payload: {}
+}
