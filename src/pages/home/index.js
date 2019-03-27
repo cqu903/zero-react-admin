@@ -16,11 +16,15 @@ class Home extends Component {
 
     this.state = {
       collapsed: false,
-      theme: defaultTheme
+      theme: defaultTheme,
+      minHeight: 0
     }
   }
   componentDidMount() {
     this.props.loadMenuData()
+    this.setState({
+      minHeight: window.screen.availHeight - 115
+    })
   }
 
   toggle = () => {
@@ -92,7 +96,7 @@ class Home extends Component {
             width={200}
             style={{
               background: this.state.theme === 'dark' ? '#002140' : '#fff',
-              minHeight: 1500
+              minHeight: this.state.minHeight
             }}
           >
             <Sider theme={this.state.theme} />

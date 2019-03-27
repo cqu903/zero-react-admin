@@ -6,9 +6,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom'
 import 'antd/dist/antd.css'
 
-import Login from './pages/login'
 import Home from './pages/home'
-
 
 class App extends Component {
   render() {
@@ -18,7 +16,6 @@ class App extends Component {
         <IconGlobal />
         <BrowserRouter>
           <div>
-            <Route path="/login" component={Login} exact />
             <Route path="/" component={Home} />
           </div>
         </BrowserRouter>
