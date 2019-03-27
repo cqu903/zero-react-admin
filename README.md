@@ -1,9 +1,12 @@
-Zero finance project's caffold.
+Zero finance project's scaffold.
 
-## create new project
+## create new aproject
+
+For instance, the new project's name is called my-app.
 
 ```bash
 git clone https://github.com/cqu903/zero-react-admin my-app
+cd my-app
 ```
 
 ### install yarn
