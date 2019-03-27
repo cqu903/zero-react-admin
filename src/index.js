@@ -18,14 +18,22 @@ import moment from 'moment'
 import 'moment/locale/zh-cn'
 moment.locale('en')
 
+const getLanguage = () => {
+  // chrome的不同语言设置值：zh-CN zh-HK zh-TW en
+  // 常规浏览器语言和IE浏览器
+  const lang = navigator.language || navigator.userLanguage
+  const localStorageLang = localStorage.getItem('lang')
+  const defaultLang = localStorageLang || lang
+  return defaultLang
+}
+
 const getCurrentAppLocale = () => {
-  let defaultLang = localStorage.getItem('defaultLang')
-  defaultLang = defaultLang === null ? 'zh-Hans-CN' : defaultLang
+  let defaultLang = getLanguage()
   switch (defaultLang) {
-    case 'zh-Hans-CN':
-      return zhCN
-    default:
+    case 'en':
       return enUS
+    default:
+      return zhCN
   }
 }
 

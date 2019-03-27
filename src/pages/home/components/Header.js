@@ -35,7 +35,7 @@ class Header extends Component {
 
   handleLangClick = e => {
     this.setState({ langVisible: false })
-    localStorage.setItem('defaultLang', e.key)
+    localStorage.setItem('lang', e.key)
     window.location.reload()
   }
 
@@ -90,8 +90,8 @@ class Header extends Component {
     )
     const lang = (
       <Menu onClick={this.handleLangClick}>
-        <Menu.Item key="zh-Hans-CN">CN 简体中文</Menu.Item>
-        <Menu.Item key="en-US">EN English</Menu.Item>
+        <Menu.Item key="zh">CN 简体中文</Menu.Item>
+        <Menu.Item key="en">EN English</Menu.Item>
       </Menu>
     )
     return (
