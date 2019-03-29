@@ -8,7 +8,8 @@ import { withRouter } from 'react-router-dom'
 import { DEV_BACKEND_SERVER_URL } from 'config/development'
 import { actionCreators as homeActionCreators } from '../store'
 // import './sider.scss'
-import { MyIcon } from '../style'
+// import { MyIcon } from '../style'
+import HomeStyle from 'statics/css/Home.module.scss'
 import http from 'utils/http'
 
 import { injectIntl } from 'react-intl'
@@ -103,7 +104,8 @@ class Header extends Component {
       <Fragment>
         <Row>
           <Col span={1}>
-            <MyIcon
+            <Icon
+              className={HomeStyle.myIcon}
               type={collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={toggle}
             />

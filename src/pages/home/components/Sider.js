@@ -45,16 +45,16 @@ class Sider extends PureComponent {
 
   render() {
     const { SubMenu } = Menu
-    const { menuData, collapsed } = this.props
+    const { menuData, collapsed, theme } = this.props
     return (
       <Fragment>
         <Link to="/">
-          <Logo collapsed={collapsed} />
+          <Logo collapsed={collapsed} theme={theme} />
         </Link>
 
         <Menu
           mode="inline"
-          theme={this.props.theme}
+          theme={theme}
           openKeys={this.state.openKeys}
           onOpenChange={this.onOpenChange}
           // inlineIndent={20}

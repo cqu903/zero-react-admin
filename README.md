@@ -77,6 +77,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 │   ├── ...
 │   └── router.js                     // router entry
 ├── statics                           // static file, usually image files
+│   ├── css                           // css
+│   └── images                        // images
 ├── store
 │   ├── index.js
 │   └── reducer.js                    // It can define different namespace reducer

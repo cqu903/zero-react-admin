@@ -1,0 +1,21 @@
+input[disabled],
+input:disabled {
+  /* border: 1px solid #ddd; */
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  background-color: #fafafa;
+  /** 去掉圆角 */
+  border-radius: 0px;
+  /* color: #aca899; */
+}
+
+textarea[disabled],
+textarea:disabled {
+  /* border: 1px solid #ddd; */
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  background-color: #fafafa;
+  /** 去掉圆角 */
+  border-radius: 0px;
+  /* color: #aca899; */
+}

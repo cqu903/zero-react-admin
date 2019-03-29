@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import ZeroList from '../../common/business/zeroList'
 import { withRouter } from 'react-router-dom'
-import { Form, Button, Input, Row, Col, Pagination } from 'antd'
+import { Form, Row, Col, Pagination } from 'antd'
 import { SearchWrapper } from './style'
+import { MyInput, MyButton } from 'common/components/MyComponents'
 
 class LoanList extends Component {
   onShowSizeChange = (current, pageSize) => {
@@ -16,20 +17,35 @@ class LoanList extends Component {
             <Row type="flex" justify="center">
               <Col span={20}>
                 <Form.Item label="贷款账户编号：">
-                  <Input size="large" allowClear />
+                  <MyInput
+                    /* 
+                    disabledStyle={{
+                      paddingLeft: 5,
+                      paddingRight: 30,
+                      fontSize: 20
+                    }} */
+                    disabled
+                    size="large"
+                    allowClear
+                    defaultValue="xxx"
+                  />
                 </Form.Item>
                 <Form.Item label="身份证号：">
-                  <Input size="large" allowClear />
+                  <MyInput size="large" allowClear />
                 </Form.Item>
               </Col>
               <Col span={4}>
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">
+                  <MyButton type="primary" htmlType="submit">
                     查询
-                  </Button>
-                  <Button style={{ marginLeft: 8 }} htmlType="submit">
+                  </MyButton>
+                  <MyButton
+                    disabled
+                    style={{ marginLeft: 8 }}
+                    htmlType="submit"
+                  >
                     清空
-                  </Button>
+                  </MyButton>
                 </Form.Item>
               </Col>
             </Row>
