@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Header from './components/Header'
 import * as routerMapping from '../router'
 import { actionCreators as homeActionCreators } from './store'
+import NotFoundPage from './../../common/exceptions/NotFoundPage'
 
 class Home extends Component {
   constructor(props) {
@@ -129,6 +130,7 @@ class Home extends Component {
                   />
                 )
               })}
+              {/* <Route component={NotFoundPage} /> */}
             </Layout.Content>
             <Layout.Footer style={{ textAlign: 'center' }}>
               Copyright © 2019 zerofinance.cn. All Right Reserved.

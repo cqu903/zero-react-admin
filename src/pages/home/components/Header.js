@@ -9,7 +9,7 @@ import { DEV_BACKEND_SERVER_URL } from 'config/development'
 import { actionCreators as homeActionCreators } from '../store'
 // import './sider.scss'
 // import { MyIcon } from '../style'
-import HomeStyle from '../Home.module.scss'
+import HomeStyle from 'statics/css/Home.module.scss'
 import http from 'utils/http'
 
 import { injectIntl } from 'react-intl'
