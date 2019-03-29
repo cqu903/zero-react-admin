@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
 import Sider from './components/Sider'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Header from './components/Header'
 import * as routerMapping from '../router'
@@ -60,20 +60,26 @@ class Home extends Component {
           // has thrid menu
           menuItem.children.map(subMenuItem => {
             // has menu
-            routes.push({
-              path: subMenuItem.url,
-              component: this.getCompoment(subMenuItem.url),
-              name: subMenuItem.text
-            })
+            let component = this.getCompoment(subMenuItem.url)
+            if (component !== null) {
+              routes.push({
+                path: subMenuItem.url,
+                component: component,
+                name: subMenuItem.text
+              })
+            }
             return null
           })
         } else {
           // hasn't third menu
-          routes.push({
-            path: menuItem.url,
-            component: this.getCompoment(menuItem.url),
-            name: menuItem.text
-          })
+          let component = this.getCompoment(menuItem.url)
+          if (component !== null) {
+            routes.push({
+              path: menuItem.url,
+              component: this.getCompoment(menuItem.url),
+              name: menuItem.text
+            })
+          }
         }
         return null
       })
@@ -120,17 +126,19 @@ class Home extends Component {
                 minHeight: 280
               }}
             >
-              {routes.map(route => {
-                return (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    component={route.component}
-                    exact
-                  />
-                )
-              })}
-              {/* <Route component={NotFoundPage} /> */}
+              <Switch>
+                {routes.map(route => {
+                  return (
+                    <Route
+                      key={route.path}
+                      path={route.path}
+                      component={route.component}
+                      exact
+                    />
+                  )
+                })}
+                <Route path="*" component={NotFoundPage} />
+              </Switch>
             </Layout.Content>
             <Layout.Footer style={{ textAlign: 'center' }}>
               Copyright © 2019 zerofinance.cn. All Right Reserved.
